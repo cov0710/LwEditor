@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView1"
+        android:layout_weight="1"
+        android:src="@drawable/ic_control_point_black_18dp"
+        android:onClick="onClick"
+        android:scaleType="center"
+        android:background="@drawable/values" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView2"
+            android:layout_weight="1"
+            android:src="@drawable/ic_control_point_black_18dp"
+            android:scaleType="center"
+            android:background="@drawable/values" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView3"
+            android:layout_weight="1"
+            android:src="@drawable/ic_control_point_black_18dp"
+            android:scaleType="center"
+            android:background="@drawable/values" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView4"
+            android:layout_weight="1"
+            android:src="@drawable/ic_control_point_black_18dp"
+            android:scaleType="center"
+            android:background="@drawable/values" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView5"
+        android:layout_weight="1"
+        android:src="@drawable/ic_control_point_black_18dp"
+        android:scaleType="center"
+        android:background="@drawable/values" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="불러오기"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
