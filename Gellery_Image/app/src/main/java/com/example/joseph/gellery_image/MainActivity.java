@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
         imageView1.setOnClickListener(this);
         imageView2.setOnClickListener(this);
+        imageView3.setOnClickListener(this);
+        imageView4.setOnClickListener(this);
+        imageView5.setOnClickListener(this);
     }
 
 
@@ -53,8 +56,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
             intent.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
         }
-        startActivityForResult(intent, 100);
-
+        switch (view.getId()) {
+            case R.id.imageView1:
+            startActivityForResult(intent, 100);
+                break;
+            case R.id.imageView2:
+                startActivityForResult(intent,200);
+                break;
+            case R.id.imageView3:
+                startActivityForResult(intent,300);
+                break;
+            case R.id.imageView4:
+                startActivityForResult(intent,400);
+                break;
+            case R.id.imageView5:
+                startActivityForResult(intent,500);
+                break;
+        }
     }
     @Override
     public void onActivityResult(int requestCode, int resultcode,Intent data) {
@@ -63,14 +81,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("GALLERY", photoUri.toString());
             String filePath = FileUtils.getPath(this, photoUri);
             Log.d("FILE_PATH", filePath);
-            imageView1.setImageBitmap(null);
-            if (bmp != null) {
-                bmp.recycle();
-                bmp = null;
+            if (requestCode==100) {
+                imageView1.setImageBitmap(null);
+                if (bmp != null) {
+                    bmp.recycle();
+                    bmp = null;
+                }
+                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                imageView1.setImageBitmap(bmp);
+                imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
             }
-            bmp = PhotoHelper.getInstance().getThumb(this, filePath);
-            imageView1.setImageBitmap(bmp);
-            imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
+            if (requestCode==200){
+                imageView2.setImageBitmap(null);
+                if (bmp != null) {
+                    bmp.recycle();
+                    bmp = null;
+                }
+                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                imageView2.setImageBitmap(bmp);
+                imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
+
+            }
+            if (requestCode==300) {
+                imageView3.setImageBitmap(null);
+                if (bmp != null) {
+                    bmp.recycle();
+                    bmp = null;
+                }
+                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                imageView3.setImageBitmap(bmp);
+                imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
+            if (requestCode==400) {
+                imageView4.setImageBitmap(null);
+                if (bmp != null) {
+                    bmp.recycle();
+                    bmp = null;
+                }
+                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                imageView4.setImageBitmap(bmp);
+                imageView4.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
+            if (requestCode==500) {
+                imageView5.setImageBitmap(null);
+                if (bmp != null) {
+                    bmp.recycle();
+                    bmp = null;
+                }
+                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                imageView5.setImageBitmap(bmp);
+                imageView5.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
         }
 
     }
