@@ -6,15 +6,20 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.joseph.gellery_image.helper.FileUtils;
 import com.example.joseph.gellery_image.helper.PhotoHelper;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -22,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button button;
     Bitmap bmp=null;
 
+    LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +39,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView4=(ImageView)findViewById(R.id.imageView4);
         imageView5=(ImageView)findViewById(R.id.imageView5);
         button=(Button)findViewById(R.id.button);
-        button.setOnClickListener(this);
+        container=(LinearLayout)findViewById(R.id.container);
         imageView1.setOnClickListener(this);
         imageView2.setOnClickListener(this);
         imageView3.setOnClickListener(this);
         imageView4.setOnClickListener(this);
         imageView5.setOnClickListener(this);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                container.buildDrawingCache();
+                Bitmap captureView = container.getDrawingCache();
+                FileOutputStream fos;
+                try {
+                    fos = new FileOutputStream(Environment.getExternalStorageDirectory().toString()+"/capture.jpeg");
+                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
@@ -83,20 +104,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("FILE_PATH", filePath);
             if (requestCode==100) {
                 imageView1.setImageBitmap(null);
-                if (bmp != null) {
-                    bmp.recycle();
-                    bmp = null;
-                }
+//                if (bmp != null) {
+//                    bmp.recycle();
+//                    bmp = null;
+//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView1.setImageBitmap(bmp);
                 imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
             }
             if (requestCode==200){
                 imageView2.setImageBitmap(null);
-                if (bmp != null) {
-                    bmp.recycle();
-                    bmp = null;
-                }
+//                if (bmp != null) {
+//                    bmp.recycle();
+//                    bmp = null;
+//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView2.setImageBitmap(bmp);
                 imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -104,30 +125,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             if (requestCode==300) {
                 imageView3.setImageBitmap(null);
-                if (bmp != null) {
-                    bmp.recycle();
-                    bmp = null;
-                }
+//                if (bmp != null) {
+//                    bmp.recycle();
+//                    bmp = null;
+//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView3.setImageBitmap(bmp);
                 imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
             }
             if (requestCode==400) {
                 imageView4.setImageBitmap(null);
-                if (bmp != null) {
-                    bmp.recycle();
-                    bmp = null;
-                }
+//                if (bmp != null) {
+//                    bmp.recycle();
+//                    bmp = null;
+//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView4.setImageBitmap(bmp);
                 imageView4.setScaleType(ImageView.ScaleType.FIT_XY);
             }
             if (requestCode==500) {
                 imageView5.setImageBitmap(null);
-                if (bmp != null) {
-                    bmp.recycle();
-                    bmp = null;
-                }
+//                if (bmp != null) {
+//                    bmp.recycle();
+//                    bmp = null;
+//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView5.setImageBitmap(bmp);
                 imageView5.setScaleType(ImageView.ScaleType.FIT_XY);
