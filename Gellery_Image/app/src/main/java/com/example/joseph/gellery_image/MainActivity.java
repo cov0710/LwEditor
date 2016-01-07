@@ -18,21 +18,29 @@ import android.widget.Toast;
 import com.example.joseph.gellery_image.helper.FileUtils;
 import com.example.joseph.gellery_image.helper.PhotoHelper;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView imageView1,imageView2,imageView3,imageView4,imageView5;
     Button button;
     Bitmap bmp=null;
-
+    String abPath= Environment.getExternalStorageDirectory().getPath();
     LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String basePath=abPath+"/Lewi/Edit";
+        File dir=new File(basePath);
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
         imageView1 =(ImageView)findViewById(R.id.imageView1);
         imageView2=(ImageView)findViewById(R.id.imageView2);
         imageView3=(ImageView)findViewById(R.id.imageView3);
@@ -48,6 +56,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+
+
+
+
+
+
                 container.buildDrawingCache();
                 Bitmap captureView = container.getDrawingCache();
                 FileOutputStream fos;
@@ -104,51 +121,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("FILE_PATH", filePath);
             if (requestCode==100) {
                 imageView1.setImageBitmap(null);
-//                if (bmp != null) {
-//                    bmp.recycle();
-//                    bmp = null;
-//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView1.setImageBitmap(bmp);
+                Log.d("debugging", filePath + "");
                 imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
+                String sdcard= abPath+"/Lewi/Edit/첫번째파일/";
+                String filename=new File(filePath).getName();
+                File file=new File(sdcard+filename);
+                Log.d("debugging",file+"");
+                createThumbnail(bmp,sdcard,1+".png");
+
             }
             if (requestCode==200){
                 imageView2.setImageBitmap(null);
-//                if (bmp != null) {
-//                    bmp.recycle();
-//                    bmp = null;
-//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView2.setImageBitmap(bmp);
+                Log.d("debugging", filePath + "");
                 imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
             if (requestCode==300) {
                 imageView3.setImageBitmap(null);
-//                if (bmp != null) {
-//                    bmp.recycle();
-//                    bmp = null;
-//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView3.setImageBitmap(bmp);
+                Log.d("debugging", filePath + "");
                 imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
             }
             if (requestCode==400) {
                 imageView4.setImageBitmap(null);
-//                if (bmp != null) {
-//                    bmp.recycle();
-//                    bmp = null;
-//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView4.setImageBitmap(bmp);
                 imageView4.setScaleType(ImageView.ScaleType.FIT_XY);
             }
             if (requestCode==500) {
                 imageView5.setImageBitmap(null);
-//                if (bmp != null) {
-//                    bmp.recycle();
-//                    bmp = null;
-//                }
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView5.setImageBitmap(bmp);
                 imageView5.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -166,4 +172,33 @@ public void onDestroy(){
         bmp=null;
     }
 }
+
+    public void createThumbnail(Bitmap bitmap, String strFilePath, String filename){
+        File file=new File(strFilePath);
+        if (!file.exists()){
+            file.mkdirs();
+            Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+        }
+        File fileCacheItem=new File(strFilePath+filename);
+        OutputStream out=null;
+
+        try {
+            fileCacheItem.createNewFile();
+            out=new FileOutputStream(fileCacheItem);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 500,500, true);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                out.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
 }
