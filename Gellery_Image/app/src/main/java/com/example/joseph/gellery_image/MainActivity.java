@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imageView1.setImageBitmap(bmp);
                 Log.d("debugging", filePath + "");
                 imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
-                String sdcard= abPath+"/Lewi/Edit/첫번째파일/";
+                String sdcard= abPath+"/Lewi/Edit/image_1/";
                 String filename=new File(filePath).getName();
                 File file=new File(sdcard+filename);
                 Log.d("debugging",file+"");
@@ -138,6 +138,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imageView2.setImageBitmap(bmp);
                 Log.d("debugging", filePath + "");
                 imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
+                String sdcard= abPath+"/Lewi/Edit/image_2/";
+                String filename=new File(filePath).getName();
+                File file=new File(sdcard+filename);
+                Log.d("debugging",file+"");
+                createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode==300) {
@@ -146,18 +151,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imageView3.setImageBitmap(bmp);
                 Log.d("debugging", filePath + "");
                 imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
+                String sdcard= abPath+"/Lewi/Edit/image_3/";
+                String filename=new File(filePath).getName();
+                File file=new File(sdcard+filename);
+                Log.d("debugging",file+"");
+                createThumbnail(bmp, sdcard, 1 + ".png");
             }
             if (requestCode==400) {
                 imageView4.setImageBitmap(null);
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView4.setImageBitmap(bmp);
                 imageView4.setScaleType(ImageView.ScaleType.FIT_XY);
+                String sdcard= abPath+"/Lewi/Edit/image_4/";
+                String filename=new File(filePath).getName();
+                File file=new File(sdcard+filename);
+                Log.d("debugging", file + "");
+                createThumbnail(bmp, sdcard, 1 + ".png");
             }
             if (requestCode==500) {
                 imageView5.setImageBitmap(null);
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView5.setImageBitmap(bmp);
                 imageView5.setScaleType(ImageView.ScaleType.FIT_XY);
+                String sdcard= abPath+"/Lewi/Edit/image_5/";
+                String filename=new File(filePath).getName();
+                File file=new File(sdcard+filename);
+                Log.d("debugging", file + "");
+                createThumbnail(bmp, sdcard, 1 + ".png");
             }
         }
 
