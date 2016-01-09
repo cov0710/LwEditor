@@ -1,10 +1,7 @@
 package com.example.joseph.gellery_image;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import com.example.joseph.gellery_image.helper.FileUtils;
-import com.example.joseph.gellery_image.helper.PhotoHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -59,12 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-
-
-
-
-
                 container.buildDrawingCache();
                 Bitmap captureView = container.getDrawingCache();
                 FileOutputStream fos;
@@ -74,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -82,103 +70,117 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Intent intent=null;
-
-        if (Build.VERSION.SDK_INT<19){
-            intent=new Intent(Intent.ACTION_GET_CONTENT);
-        }else{
-            intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-        }
-        intent.setType("image/*");
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
-        }
-        switch (view.getId()) {
+        Intent intent=new Intent();
+        switch (view.getId()){
             case R.id.imageView1:
-            startActivityForResult(intent, 100);
+
+                intent.setClass(this, EditActivity_1.class);
+                startActivityForResult(intent, 100);
                 break;
             case R.id.imageView2:
-                startActivityForResult(intent,200);
+                intent.setClass(this, EditActivity_1.class);
+                startActivityForResult(intent, 200);
                 break;
             case R.id.imageView3:
-                startActivityForResult(intent,300);
+
+                intent.setClass(this, EditActivity_1.class);
+                startActivityForResult(intent, 300);
                 break;
             case R.id.imageView4:
-                startActivityForResult(intent,400);
+
+                intent.setClass(this, EditActivity_1.class);
+                startActivityForResult(intent, 400);
                 break;
             case R.id.imageView5:
-                startActivityForResult(intent,500);
+
+                intent.setClass(this, EditActivity_1.class);
+                startActivityForResult(intent, 500);
                 break;
+
+
         }
+
     }
     @Override
     public void onActivityResult(int requestCode, int resultcode,Intent data) {
-        if (resultcode == Activity.RESULT_OK) {
-            Uri photoUri = data.getData();
-            Log.d("GALLERY", photoUri.toString());
-            String filePath = FileUtils.getPath(this, photoUri);
-            Log.d("FILE_PATH", filePath);
+        if (resultcode==RESULT_OK) {
+            Log.d("debug","주여");
+//            Uri photoUri = data.getData();
+//            Log.d("GALLERY", photoUri.toString());
+//            String filePath = FileUtils.getPath(this, photoUri);
+//            Log.d("FILE_PATH", filePath);
+//            Log.d("debug","주여1");
             if (requestCode==100) {
-                imageView1.setImageBitmap(null);
-                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                Log.d("debug", "주여2");
+                Log.d("debug", "주여3");
+                String str=data.getStringExtra("text");
+                bmp=data.getParcelableExtra("image");
+                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
                 imageView1.setImageBitmap(bmp);
-                Log.d("debugging", filePath + "");
                 imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
-                String sdcard= abPath+"/Lewi/Edit/image_1/";
-                String filename=new File(filePath).getName();
-                File file=new File(sdcard+filename);
-                Log.d("debugging",file+"");
-                createThumbnail(bmp,sdcard,1+".png");
+                String sdcard=abPath+"/Lewi/Edit/image_1/";
+                File file=new File(sdcard);
+                Log.d("debugging", file + "");
+                createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
-            if (requestCode==200){
-                imageView2.setImageBitmap(null);
-                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+            if (requestCode==200) {
+                Log.d("debug", "주여2");
+                Log.d("debug", "주여3");
+                String str=data.getStringExtra("text");
+                bmp=data.getParcelableExtra("image");
+                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
                 imageView2.setImageBitmap(bmp);
-                Log.d("debugging", filePath + "");
                 imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
-                String sdcard= abPath+"/Lewi/Edit/image_2/";
-                String filename=new File(filePath).getName();
-                File file=new File(sdcard+filename);
-                Log.d("debugging",file+"");
+                String sdcard=abPath+"/Lewi/Edit/image_2/";
+                File file=new File(sdcard);
+                Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode==300) {
-                imageView3.setImageBitmap(null);
-                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                Log.d("debug", "주여2");
+                Log.d("debug", "주여3");
+                String str=data.getStringExtra("text");
+                bmp=data.getParcelableExtra("image");
+                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
                 imageView3.setImageBitmap(bmp);
-                Log.d("debugging", filePath + "");
                 imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
-                String sdcard= abPath+"/Lewi/Edit/image_3/";
-                String filename=new File(filePath).getName();
-                File file=new File(sdcard+filename);
-                Log.d("debugging",file+"");
+                String sdcard=abPath+"/Lewi/Edit/image_3/";
+                File file=new File(sdcard);
+                Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
+
             }
             if (requestCode==400) {
-                imageView4.setImageBitmap(null);
-                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                Log.d("debug", "주여2");
+                Log.d("debug", "주여3");
+                String str=data.getStringExtra("text");
+                bmp=data.getParcelableExtra("image");
+                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
                 imageView4.setImageBitmap(bmp);
                 imageView4.setScaleType(ImageView.ScaleType.FIT_XY);
-                String sdcard= abPath+"/Lewi/Edit/image_4/";
-                String filename=new File(filePath).getName();
-                File file=new File(sdcard+filename);
+                String sdcard=abPath+"/Lewi/Edit/image_4/";
+                File file=new File(sdcard);
                 Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
+
             }
             if (requestCode==500) {
-                imageView5.setImageBitmap(null);
-                bmp = PhotoHelper.getInstance().getThumb(this, filePath);
+                Log.d("debug", "주여2");
+                Log.d("debug", "주여3");
+                String str=data.getStringExtra("text");
+                bmp=data.getParcelableExtra("image");
+                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
                 imageView5.setImageBitmap(bmp);
                 imageView5.setScaleType(ImageView.ScaleType.FIT_XY);
-                String sdcard= abPath+"/Lewi/Edit/image_5/";
-                String filename=new File(filePath).getName();
-                File file=new File(sdcard+filename);
+                String sdcard=abPath+"/Lewi/Edit/image_5/";
+                File file=new File(sdcard);
                 Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
+
             }
+
         }
 
     }
