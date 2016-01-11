@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 insertText1.setText(str1);
                 insertText2.setText(str2);
                 imageView1.setImageBitmap(bmp);
-                imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
+                imageView1.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 String sdcard=abPath+"/Lewi/Edit/image_1/";
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
