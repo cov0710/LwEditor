@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Bitmap bmp=null;
     String abPath= Environment.getExternalStorageDirectory().getPath();
     LinearLayout container;
-    TextView insertText1,insertText2;
+    TextView insertText1,insertText2,insertText3,insertText4,insertText5,insertText6,insertText7,insertText8,insertText9,insertText10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +40,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView3=(ImageView)findViewById(R.id.imageView3);
         imageView4=(ImageView)findViewById(R.id.imageView4);
         imageView5=(ImageView)findViewById(R.id.imageView5);
+
         insertText1=(TextView)findViewById(R.id.insertText1);
         insertText2=(TextView)findViewById(R.id.insertText2);
+        insertText3=(TextView)findViewById(R.id.insertText3);
+        insertText4=(TextView)findViewById(R.id.insertText4);
+        insertText5=(TextView)findViewById(R.id.insertText5);
+        insertText6=(TextView)findViewById(R.id.insertText6);
+        insertText7=(TextView)findViewById(R.id.insertText7);
+        insertText8=(TextView)findViewById(R.id.insertText8);
+        insertText9=(TextView)findViewById(R.id.insertText9);
+        insertText10=(TextView)findViewById(R.id.insertText10);
+
         button=(Button)findViewById(R.id.button);
         container=(LinearLayout)findViewById(R.id.container);
         imageView1.setOnClickListener(this);
@@ -107,15 +116,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultcode,Intent data) {
         if (resultcode==RESULT_OK) {
-            Log.d("debug","주여");
 //            Uri photoUri = data.getData();
 //            Log.d("GALLERY", photoUri.toString());
 //            String filePath = FileUtils.getPath(this, photoUri);
 //            Log.d("FILE_PATH", filePath);
 //            Log.d("debug","주여1");
             if (requestCode==100) {
-                Log.d("debug", "주여2");
-                Log.d("debug", "주여3");
                 String str1=data.getStringExtra("text1");
                 String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
@@ -124,68 +130,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imageView1.setImageBitmap(bmp);
                 imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_1/";
-                File file=new File(sdcard);
-                Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode==200) {
-                Log.d("debug", "주여2");
-                Log.d("debug", "주여3");
                 String str1=data.getStringExtra("text1");
                 String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
+                insertText3.setText(str1);
+                insertText4.setText(str2);
                 imageView2.setImageBitmap(bmp);
                 imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_2/";
-                File file=new File(sdcard);
-                Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode==300) {
-                Log.d("debug", "주여2");
-                Log.d("debug", "주여3");
                 String str1=data.getStringExtra("text1");
                 String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
+                insertText5.setText(str1);
+                insertText6.setText(str2);
                 imageView3.setImageBitmap(bmp);
                 imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_3/";
-                File file=new File(sdcard);
-                Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode==400) {
-                Log.d("debug", "주여2");
-                Log.d("debug", "주여3");
                 String str1=data.getStringExtra("text1");
                 String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
+                insertText7.setText(str1);
+                insertText8.setText(str2);
                 imageView4.setImageBitmap(bmp);
                 imageView4.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_4/";
-                File file=new File(sdcard);
-                Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode==500) {
-                Log.d("debug", "주여2");
-                Log.d("debug", "주여3");
                 String str1=data.getStringExtra("text1");
                 String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
+                insertText9.setText(str1);
+                insertText10.setText(str2);
                 imageView5.setImageBitmap(bmp);
                 imageView5.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_5/";
-                File file=new File(sdcard);
-                Log.d("debugging", file + "");
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
@@ -216,7 +208,7 @@ public void onDestroy(){
         try {
             fileCacheItem.createNewFile();
             out=new FileOutputStream(fileCacheItem);
-            bitmap = Bitmap.createScaledBitmap(bitmap, 500,500, true);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 1920,1080, true);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
 
         }catch (Exception e){
