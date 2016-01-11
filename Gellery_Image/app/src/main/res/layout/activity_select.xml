@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/newSlide"
+        android:padding="60dp"
+        android:background="@drawable/selectframe">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/newSlide_image"
+            android:src="@drawable/ic_description_grey600_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="새 슬라이드"
+            android:id="@+id/newSlide_text"
+            android:layout_gravity="center_horizontal|bottom"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:id="@+id/mySlide"
+        android:padding="60dp"
+        android:background="@drawable/selectframe">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mySlide_image"
+            android:src="@drawable/ic_assignment_grey600_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="내 슬라이드"
+            android:id="@+id/mySlide_text"
+            android:layout_gravity="center_horizontal|bottom"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+</LinearLayout>

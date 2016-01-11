@@ -19,14 +19,15 @@ import com.example.joseph.gellery_image.helper.PhotoHelper;
 public class EditActivity_1 extends AppCompatActivity implements View.OnClickListener{
     ImageView imageView;
     Bitmap bmp;
-    EditText editText;
+    EditText editText1,editText2;
     Button button;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_activity_1);
         imageView=(ImageView)findViewById(R.id.imageView);
-        editText=(EditText)findViewById(R.id.editText);
+        editText1=(EditText)findViewById(R.id.editText1);
+        editText2=(EditText)findViewById(R.id.editText2);
         imageView.setOnClickListener(this);
         button=(Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -34,10 +35,12 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 Log.d("debug", bmp + "");
                 Intent intent=getIntent();
-                String str=editText.getText().toString();
-                bmp = Bitmap.createScaledBitmap(bmp, 350,350, true);
+                String str1=editText1.getText().toString();
+                String str2=editText2.getText().toString();
+                bmp = Bitmap.createScaledBitmap(bmp, 350, 350, true);
                 intent.putExtra("image",bmp);
-                intent.putExtra("text",str);
+                intent.putExtra("text1",str1);
+                intent.putExtra("text2",str2);
                 setResult(RESULT_OK, intent);
                 finish();
             }

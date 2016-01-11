@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Bitmap bmp=null;
     String abPath= Environment.getExternalStorageDirectory().getPath();
     LinearLayout container;
-
+    TextView insertText1,insertText2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView3=(ImageView)findViewById(R.id.imageView3);
         imageView4=(ImageView)findViewById(R.id.imageView4);
         imageView5=(ImageView)findViewById(R.id.imageView5);
+        insertText1=(TextView)findViewById(R.id.insertText1);
+        insertText2=(TextView)findViewById(R.id.insertText2);
         button=(Button)findViewById(R.id.button);
         container=(LinearLayout)findViewById(R.id.container);
         imageView1.setOnClickListener(this);
@@ -113,9 +116,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (requestCode==100) {
                 Log.d("debug", "주여2");
                 Log.d("debug", "주여3");
-                String str=data.getStringExtra("text");
+                String str1=data.getStringExtra("text1");
+                String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+                insertText1.setText(str1);
+                insertText2.setText(str2);
                 imageView1.setImageBitmap(bmp);
                 imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_1/";
@@ -127,9 +132,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (requestCode==200) {
                 Log.d("debug", "주여2");
                 Log.d("debug", "주여3");
-                String str=data.getStringExtra("text");
+                String str1=data.getStringExtra("text1");
+                String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
                 imageView2.setImageBitmap(bmp);
                 imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_2/";
@@ -141,9 +147,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (requestCode==300) {
                 Log.d("debug", "주여2");
                 Log.d("debug", "주여3");
-                String str=data.getStringExtra("text");
+                String str1=data.getStringExtra("text1");
+                String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
                 imageView3.setImageBitmap(bmp);
                 imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_3/";
@@ -155,9 +162,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (requestCode==400) {
                 Log.d("debug", "주여2");
                 Log.d("debug", "주여3");
-                String str=data.getStringExtra("text");
+                String str1=data.getStringExtra("text1");
+                String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
                 imageView4.setImageBitmap(bmp);
                 imageView4.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_4/";
@@ -169,9 +177,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (requestCode==500) {
                 Log.d("debug", "주여2");
                 Log.d("debug", "주여3");
-                String str=data.getStringExtra("text");
+                String str1=data.getStringExtra("text1");
+                String str2=data.getStringExtra("text2");
                 bmp=data.getParcelableExtra("image");
-                Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,str1,Toast.LENGTH_SHORT).show();
                 imageView5.setImageBitmap(bmp);
                 imageView5.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard=abPath+"/Lewi/Edit/image_5/";
