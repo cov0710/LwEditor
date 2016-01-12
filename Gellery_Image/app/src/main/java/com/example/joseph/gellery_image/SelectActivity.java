@@ -22,7 +22,7 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.newSlide:
-                Intent intent=new Intent(this,MainActivity.class);
+                Intent intent=new Intent(this,template_2.class);
                 startActivity(intent);
 
         }

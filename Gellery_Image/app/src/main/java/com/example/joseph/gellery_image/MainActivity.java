@@ -116,11 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultcode,Intent data) {
         if (resultcode==RESULT_OK) {
-//            Uri photoUri = data.getData();
-//            Log.d("GALLERY", photoUri.toString());
-//            String filePath = FileUtils.getPath(this, photoUri);
-//            Log.d("FILE_PATH", filePath);
-//            Log.d("debug","주여1");
             if (requestCode==100) {
                 String str1=data.getStringExtra("text1");
                 String str2=data.getStringExtra("text2");

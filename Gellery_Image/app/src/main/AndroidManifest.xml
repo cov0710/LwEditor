@@ -13,6 +13,15 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditActivity_1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartingActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,14 +30,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditActivity_1"
-            android:screenOrientation="portrait" />
-        <activity android:name=".SelectActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".StartingActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:name=".template_1"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".template_2"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".SelectTemplate"></activity>
     </application>
 
 </manifest>

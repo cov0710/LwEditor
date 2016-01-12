@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,8 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
     Bitmap bmp;
     EditText editText1,editText2;
     Button button;
+    String extPath="/storage/extSdCard";
+    String abPath= Environment.getExternalStorageDirectory().getPath();
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +62,7 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
         }
         intent.setType("image/*");
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
+            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         }
         switch (view.getId()) {
             case R.id.imageView:
@@ -75,11 +78,13 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
             String filePath = FileUtils.getPath(this, photoUri);
             Log.d("FILE_PATH", filePath);
             if (requestCode==100) {
+                Log.d("debug",filePath);
                 imageView.setImageBitmap(null);
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView.setImageBitmap(bmp);
                 Log.d("debugging", filePath + "");
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+               // imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//                copyFile(filePath, abPath);
             }
 
         }
@@ -95,5 +100,63 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
             bmp=null;
         }
     }
-
+//    public void copyFile(String mainPath,String extPath){
+//        String fileName=new File(mainPath).getName();
+//        Log.d("debug",fileName);
+//        File mainFile=new File(mainPath);
+//        Log.d("debug",mainPath);
+//        File extFile=new File(extPath+"/"+fileName);
+//        Log.d("debug",""+extFile);
+//        FileInputStream inputStream = null;
+//        try{
+//            Log.d("debug","어딜까2");
+//            inputStream=new FileInputStream(mainFile);
+//            Log.d("debug","어딜까3");
+//        }catch(FileNotFoundException e){
+//            e.printStackTrace();
+//        }
+//        FileOutputStream outputStream = null;
+//        Log.d("debug","어딜까3");
+//        try{
+//            outputStream=new FileOutputStream(extFile);
+//        }catch(FileNotFoundException e){
+//            e.printStackTrace();
+//        }
+//        FileChannel fcin=inputStream.getChannel();
+//        Log.d("debug","어딜까4");
+//        FileChannel fcout=outputStream.getChannel();
+//        Log.d("debug","어딜까5");
+//        long size = 0;
+//        try {
+//            size = fcin.size();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            fcin.transferTo(0, size, fcout);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            fcout.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            fcin.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            outputStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            inputStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
