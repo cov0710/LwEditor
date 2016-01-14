@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.example.joseph.gellery_image.template.template_2;
+
 public class SelectActivity extends AppCompatActivity implements View.OnClickListener{
     FrameLayout frameLayout1,frameLayout2;
     @Override

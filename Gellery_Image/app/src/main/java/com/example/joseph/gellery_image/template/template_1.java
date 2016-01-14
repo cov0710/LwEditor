@@ -1,4 +1,4 @@
-package com.example.joseph.gellery_image;
+package com.example.joseph.gellery_image.template;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.joseph.gellery_image.EditActivity_1;
+import com.example.joseph.gellery_image.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
