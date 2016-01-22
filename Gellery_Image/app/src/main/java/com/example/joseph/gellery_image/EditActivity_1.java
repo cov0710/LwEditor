@@ -17,13 +17,20 @@ import android.widget.ImageView;
 import com.example.joseph.gellery_image.helper.FileUtils;
 import com.example.joseph.gellery_image.helper.PhotoHelper;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+
 public class EditActivity_1 extends AppCompatActivity implements View.OnClickListener{
     ImageView imageView;
     Bitmap bmp;
     EditText editText1,editText2;
     Button button;
-    String extPath="/storage/extSdCard";
     String abPath= Environment.getExternalStorageDirectory().getPath();
+    String original=null;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +48,14 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
                 String str1=editText1.getText().toString();
                 String str2=editText2.getText().toString();
                 bmp = Bitmap.createScaledBitmap(bmp, 350, 350, true);
-                intent.putExtra("image",bmp);
-                intent.putExtra("text1",str1);
-                intent.putExtra("text2",str2);
+                intent.putExtra("image", bmp);
+                intent.putExtra("text1", str1);
+                intent.putExtra("text2", str2);
+
+                String pastePath=new File(original).getName();
+                Log.d("original값=",original);
+                intent.putExtra("filePath",abPath+"/bless/"+pastePath);
+                Log.d("devvv", abPath+"/bless/"+pastePath);
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -77,21 +89,17 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
             Log.d("GALLERY", photoUri.toString());
             String filePath = FileUtils.getPath(this, photoUri);
             Log.d("FILE_PATH", filePath);
-            if (requestCode==100) {
-                Log.d("debug",filePath);
+            if (requestCode== 100) {
+                Log.d("debug", filePath);
                 imageView.setImageBitmap(null);
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView.setImageBitmap(bmp);
                 Log.d("debugging", filePath + "");
-               // imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-//                copyFile(filePath, abPath);
+                copyFile(filePath, abPath+"/bless");
+                original=filePath;
             }
-
         }
-
     }
-
-
     @Override
     public void onDestroy(){
         super.onDestroy();
@@ -100,63 +108,60 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
             bmp=null;
         }
     }
-//    public void copyFile(String mainPath,String extPath){
-//        String fileName=new File(mainPath).getName();
-//        Log.d("debug",fileName);
-//        File mainFile=new File(mainPath);
-//        Log.d("debug",mainPath);
-//        File extFile=new File(extPath+"/"+fileName);
-//        Log.d("debug",""+extFile);
-//        FileInputStream inputStream = null;
-//        try{
-//            Log.d("debug","어딜까2");
-//            inputStream=new FileInputStream(mainFile);
-//            Log.d("debug","어딜까3");
-//        }catch(FileNotFoundException e){
-//            e.printStackTrace();
-//        }
-//        FileOutputStream outputStream = null;
-//        Log.d("debug","어딜까3");
-//        try{
-//            outputStream=new FileOutputStream(extFile);
-//        }catch(FileNotFoundException e){
-//            e.printStackTrace();
-//        }
-//        FileChannel fcin=inputStream.getChannel();
-//        Log.d("debug","어딜까4");
-//        FileChannel fcout=outputStream.getChannel();
-//        Log.d("debug","어딜까5");
-//        long size = 0;
-//        try {
-//            size = fcin.size();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            fcin.transferTo(0, size, fcout);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            fcout.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            fcin.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            outputStream.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            inputStream.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void copyFile(String copyPath,String pastePath){
+        String fileName=new File(copyPath).getName();
+        File copyFile=new File(copyPath);
+        File pasteFile=new File(pastePath+"/"+fileName);
+        Log.d("debug1",copyFile+"");
+        Log.d("debug2",pasteFile+"");
+        if (copyFile!=pasteFile) {
+            FileInputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream(copyFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(pasteFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            FileChannel fcin = inputStream.getChannel();
+            FileChannel fcout = outputStream.getChannel();
+            long size = 0;
+            try {
+                size = fcin.size();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fcin.transferTo(0, size, fcout);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                fcout.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                fcin.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d("debug3","성공");
+        }
+    }
 }

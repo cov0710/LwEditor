@@ -17,7 +17,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView imageView1,imageView2,imageView3,imageView4,imageView5;
     Button button;
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView3=(ImageView)findViewById(R.id.imageView3);
         imageView4=(ImageView)findViewById(R.id.imageView4);
         imageView5=(ImageView)findViewById(R.id.imageView5);
-
         insertText1=(TextView)findViewById(R.id.insertText1);
         insertText2=(TextView)findViewById(R.id.insertText2);
         insertText3=(TextView)findViewById(R.id.insertText3);

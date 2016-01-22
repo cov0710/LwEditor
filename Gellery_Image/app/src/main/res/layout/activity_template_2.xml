@@ -27,8 +27,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/temp2img_1"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
                     android:background="@drawable/values"
                     android:scaleType="center" />

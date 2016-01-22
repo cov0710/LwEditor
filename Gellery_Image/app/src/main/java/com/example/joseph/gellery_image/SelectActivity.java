@@ -1,12 +1,10 @@
 package com.example.joseph.gellery_image;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
-
-import com.example.joseph.gellery_image.template.template_2;
 
 public class SelectActivity extends AppCompatActivity implements View.OnClickListener{
     FrameLayout frameLayout1,frameLayout2;
@@ -24,8 +22,9 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.newSlide:
-                Intent intent=new Intent(this,template_2.class);
+                Intent intent=new Intent(this,SelectTemplate.class);
                 startActivity(intent);
+                break;
 
         }
 

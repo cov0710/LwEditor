@@ -2,6 +2,7 @@ package com.example.joseph.gellery_image.template;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
     ImageView temp2img_1,temp2img_2,temp2img_3,temp2img_4,temp2img_5,temp2img_6,temp2img_7,temp2img_8;
     TextView temp2Text_1,temp2Text_2,temp2Text_3,temp2Text_4,temp2Text_5,temp2Text_6,temp2Text_7,temp2Text_8,
             temp2Text_9,temp2Text_10,temp2Text_11,temp2Text_12,temp2Text_13,temp2Text_14,temp2Text_15,temp2Text_16;
+
     Button button;
     LinearLayout container;
     Bitmap bmp=null;
@@ -137,13 +139,13 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
             if (requestCode == 100) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
+                String filePath=data.getStringExtra("filePath");
+                Log.d("debb",filePath);
                 bmp = data.getParcelableExtra("image");
                 temp2Text_1.setText(str1);
                 temp2Text_2.setText(str2);
-                temp2img_1.setImageBitmap(bmp);
-                temp2img_1.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
+                temp2img_1.setImageURI(Uri.parse(filePath));
+                temp2img_1.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
             if (requestCode == 200) {
@@ -153,7 +155,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_3.setText(str1);
                 temp2Text_4.setText(str2);
                 temp2img_2.setImageBitmap(bmp);
-                temp2img_2.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp2img_2.setScaleType(ImageView.ScaleType.FIT_XY);
                 String sdcard = abPath + "/Lewi/Edit/image_1/";
                 createThumbnail(bmp, sdcard, 1 + ".png");
 
@@ -253,7 +255,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
             fileCacheItem.createNewFile();
             out=new FileOutputStream(fileCacheItem);
             bitmap = Bitmap.createScaledBitmap(bitmap, 1920,1080, true);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100, out);
 
         }catch (Exception e){
             e.printStackTrace();
