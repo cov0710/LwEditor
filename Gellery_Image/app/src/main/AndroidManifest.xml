@@ -18,6 +18,12 @@
         <activity
             android:name=".EditActivity_1"
             android:screenOrientation="portrait" />
+        <activity android:name=".template_1"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".template_2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".template_3"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SelectActivity"
             android:screenOrientation="portrait" />

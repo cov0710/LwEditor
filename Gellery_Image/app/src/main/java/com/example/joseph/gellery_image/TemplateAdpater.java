@@ -1,8 +1,10 @@
 package com.example.joseph.gellery_image;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -39,7 +41,7 @@ public class TemplateAdpater extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ImageView imageView=null;
         if (null!=convertView)
             imageView=(ImageView)convertView;
@@ -49,9 +51,24 @@ public class TemplateAdpater extends BaseAdapter{
             imageView=new ImageView(context);
             imageView.setAdjustViewBounds(true);
             imageView.setImageBitmap(bmp);
-
-            ImageClickListener imageClickListener=new ImageClickListener(context,position);
-            imageView.setOnClickListener(imageClickListener);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("debug9",position+"");
+                    if (position==0){
+                        context.startActivity(new Intent(context,template_1.class));
+                    }
+                    if (position==1){
+                        context.startActivity(new Intent(context,template_2.class));
+                    }
+                    if (position==2){
+                        context.startActivity(new Intent(context,template_3.class));
+                    }
+                    if (position==3){
+                        context.startActivity(new Intent(context,MainActivity.class));
+                    }
+                }
+            });
         }
         return imageView;
     }

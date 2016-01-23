@@ -34,6 +34,7 @@ public class StartingActivity extends AppCompatActivity {
                 String tempPath=str+"/Lewi/Edit/temp/";
                 File file1=new File(str+"/Lewi/Edit/temp");
                 File file2=new File(str+"/Lewi/Edit/template");
+                File file3=new File(str+"/Lewi/Edit/capture");
                 File temp1=new File(tempPath+"temp1");
                 File temp2=new File(tempPath+"temp2");
                 File temp3=new File(tempPath+"temp3");
@@ -44,6 +45,9 @@ public class StartingActivity extends AppCompatActivity {
                 }
                 if (!file2.exists()){
                     file2.mkdirs();
+                }
+                if (!file3.exists()){
+                    file3.mkdirs();
                 }
                 if (!temp1.exists()){
                     temp1.mkdirs();

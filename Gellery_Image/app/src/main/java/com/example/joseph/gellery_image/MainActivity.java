@@ -1,7 +1,9 @@
 package com.example.joseph.gellery_image;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView4.setOnClickListener(this);
         imageView5.setOnClickListener(this);
         button.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
 
@@ -67,12 +70,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Bitmap captureView = container.getDrawingCache();
                 FileOutputStream fos;
                 try {
-                    fos = new FileOutputStream(Environment.getExternalStorageDirectory().toString()+"/capture.jpeg");
+                    File[] file=getExternalFilesDirs(null);
+                    String capturePath= String.valueOf(file[1]);
+                    fos = new FileOutputStream(capturePath+"/Lewi/Edit/capture/temp4capture.jpg");
                     captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
                 Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }

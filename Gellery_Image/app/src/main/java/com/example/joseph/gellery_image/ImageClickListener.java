@@ -1,6 +1,7 @@
 package com.example.joseph.gellery_image;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -18,6 +19,7 @@ public class ImageClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Log.d("debug9", imageID + "");
+        Intent intent=new Intent(context,template_1.class);
 
 
 

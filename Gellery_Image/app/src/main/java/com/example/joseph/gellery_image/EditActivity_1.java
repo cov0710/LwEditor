@@ -52,10 +52,9 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("text1", str1);
                 intent.putExtra("text2", str2);
 
+                //파일복사 코드
                 String pastePath=new File(original).getName();
-                Log.d("original값=",original);
                 intent.putExtra("filePath",abPath+"/bless/"+pastePath);
-                Log.d("devvv", abPath+"/bless/"+pastePath);
                 setResult(RESULT_OK, intent);
                 finish();
             }
