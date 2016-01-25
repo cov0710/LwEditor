@@ -3,12 +3,10 @@ package com.example.joseph.gellery_image;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,9 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.channels.FileChannel;
 
 public class template_2 extends AppCompatActivity implements View.OnClickListener{
     ImageView temp2img_1,temp2img_2,temp2img_3,temp2img_4,temp2img_5,temp2img_6,temp2img_7,temp2img_8;
@@ -29,6 +30,17 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
     Button button;
     LinearLayout container;
     Bitmap bmp=null;
+    String usbPath="/storage/UsbDriveA";
+    String filePath1=null;
+    String filePath2=null;
+    String filePath3=null;
+    String filePath4=null;
+    String filePath5=null;
+    String filePath6=null;
+    String filePath7=null;
+    String filePath8=null;
+
+
     String abPath= Environment.getExternalStorageDirectory().getPath();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +91,32 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 Bitmap captureView = container.getDrawingCache();
                 FileOutputStream fos;
                 try {
-                    File[] file=getExternalFilesDirs(null);
-                    String capturePath= String.valueOf(file[1]);
-                    fos = new FileOutputStream(capturePath+"/Lewi/Edit/capture/temp2capture.jpg");
+                    fos = new FileOutputStream(usbPath+"/Lewi/Edit/capture/temp2capture.jpg");
                     captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+                copyFile(filePath1,usbPath+"/Lewi/Edit/temp/temp2","temp2img_1.jpg");
+                copyFile(filePath2,usbPath+"/Lewi/Edit/temp/temp2","temp2img_2.jpg");
+                copyFile(filePath3,usbPath+"/Lewi/Edit/temp/temp2","temp2img_3.jpg");
+                copyFile(filePath4,usbPath+"/Lewi/Edit/temp/temp2","temp2img_4.jpg");
+                copyFile(filePath5,usbPath+"/Lewi/Edit/temp/temp2","temp2img_5.jpg");
+                copyFile(filePath6,usbPath+"/Lewi/Edit/temp/temp2","temp2img_6.jpg");
+                copyFile(filePath7,usbPath+"/Lewi/Edit/temp/temp2","temp2img_7.jpg");
+                copyFile(filePath8,usbPath+"/Lewi/Edit/temp/temp2","temp2img_8.jpg");
+
+                String signalPath=usbPath+"/Lewi/Edit/signal/";
+                File signalFile=new File(signalPath);
+                String[] children=signalFile.list();
+                final int len=signalFile.list().length;
+                for (int i=0;i<len;i++){
+                    String filename=children[i];
+                    File f=new File(signalPath+filename);
+                    f.delete();
+                }
+                File file=new File(signalPath+"signal2");
+                file.mkdirs();
+
                 Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -137,101 +168,101 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultcode, Intent data) {
         if (resultcode == RESULT_OK) {
-            Log.d("debug", "나온네이");
             if (requestCode == 100) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
-                String filePath=data.getStringExtra("filePath");
-                Log.d("debb",filePath);
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath1=str3;
                 temp2Text_1.setText(str1);
                 temp2Text_2.setText(str2);
-                temp2img_1.setImageURI(Uri.parse(filePath));
-                temp2img_1.setScaleType(ImageView.ScaleType.FIT_XY);
-
+                temp2img_1.setImageBitmap(bmp);
+                temp2img_1.setScaleType(ImageView.ScaleType.CENTER);
             }
             if (requestCode == 200) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath2=str3;
                 temp2Text_3.setText(str1);
                 temp2Text_4.setText(str2);
                 temp2img_2.setImageBitmap(bmp);
-                temp2img_2.setScaleType(ImageView.ScaleType.FIT_XY);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
+                temp2img_2.setScaleType(ImageView.ScaleType.CENTER);
+
 
             }
             if (requestCode == 300) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath3=str3;
                 temp2Text_5.setText(str1);
                 temp2Text_6.setText(str2);
                 temp2img_3.setImageBitmap(bmp);
                 temp2img_3.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
+
 
             }
             if (requestCode == 400) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath4=str3;
                 temp2Text_7.setText(str1);
                 temp2Text_8.setText(str2);
                 temp2img_4.setImageBitmap(bmp);
                 temp2img_4.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode == 500) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath5=str3;
                 temp2Text_9.setText(str1);
                 temp2Text_10.setText(str2);
                 temp2img_5.setImageBitmap(bmp);
                 temp2img_5.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode == 600) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath6=str3;
                 temp2Text_11.setText(str1);
                 temp2Text_12.setText(str2);
                 temp2img_6.setImageBitmap(bmp);
                 temp2img_6.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode == 700) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath7=str3;
                 temp2Text_13.setText(str1);
                 temp2Text_14.setText(str2);
                 temp2img_7.setImageBitmap(bmp);
                 temp2img_7.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
             if (requestCode == 800) {
                 String str1 = data.getStringExtra("text1");
                 String str2 = data.getStringExtra("text2");
                 bmp = data.getParcelableExtra("image");
+                String str3=data.getStringExtra("filePath");
+                filePath8=str3;
                 temp2Text_15.setText(str1);
                 temp2Text_16.setText(str2);
                 temp2img_8.setImageBitmap(bmp);
                 temp2img_8.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                String sdcard = abPath + "/Lewi/Edit/image_1/";
-                createThumbnail(bmp, sdcard, 1 + ".png");
 
             }
         }
@@ -265,6 +296,58 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
             try {
                 out.close();
             }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    public void copyFile(String copyPath,String pastePath,String fileName){
+        File copyFile=new File(copyPath);
+        File pasteFile=new File(pastePath+"/"+fileName);
+        if (copyFile!=pasteFile) {
+            FileInputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream(copyFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(pasteFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            FileChannel fcin = inputStream.getChannel();
+            FileChannel fcout = outputStream.getChannel();
+            long size = 0;
+            try {
+                size = fcin.size();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fcin.transferTo(0, size, fcout);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                fcout.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                fcin.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                inputStream.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

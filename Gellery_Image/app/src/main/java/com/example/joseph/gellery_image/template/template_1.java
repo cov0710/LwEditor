@@ -36,11 +36,11 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
         temp1img_2=(ImageView)findViewById(R.id.temp1img_2);
         temp1img_3=(ImageView)findViewById(R.id.temp1img_3);
         temp1Text_1=(TextView)findViewById(R.id.temp1Text_1);
-        temp1Text_2=(TextView)findViewById(R.id.temp1Text_2);
+        temp1Text_2=(TextView)findViewById(R.id.temp4Text_2);
         temp1Text_3=(TextView)findViewById(R.id.temp1Text_3);
-        temp1Text_4=(TextView)findViewById(R.id.temp1Text_4);
+        temp1Text_4=(TextView)findViewById(R.id.temp4Text_4);
         temp1Text_5=(TextView)findViewById(R.id.temp1Text_5);
-        temp1Text_6=(TextView)findViewById(R.id.temp1Text_6);
+        temp1Text_6=(TextView)findViewById(R.id.temp4Text_6);
 
         temp1img_1.setOnClickListener(this);
         temp1img_2.setOnClickListener(this);

@@ -20,7 +20,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageView1"
+                android:id="@+id/temp4img_1"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_action_add"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Text2"
-                android:id="@+id/insertText2"
+                android:id="@+id/temp4Text_2"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -42,8 +42,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Text1"
-                android:id="@+id/insertText1"
-                android:layout_above="@+id/insertText2"
+                android:id="@+id/temp4Text_1"
+                android:layout_above="@+id/temp4Text_2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
@@ -62,7 +62,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageView2"
+                    android:id="@+id/temp4img_2"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text2"
-                    android:id="@+id/insertText4"
+                    android:id="@+id/temp4Text_4"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
@@ -85,8 +85,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text1"
-                    android:id="@+id/insertText3"
-                    android:layout_above="@+id/insertText4"
+                    android:id="@+id/temp4Text_3"
+                    android:layout_above="@+id/temp4Text_4"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="15dp" />
@@ -100,7 +100,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageView3"
+                    android:id="@+id/temp4img_3"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text2"
-                    android:id="@+id/insertText6"
+                    android:id="@+id/temp4Text_6"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
@@ -123,8 +123,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text1"
-                    android:id="@+id/insertText5"
-                    android:layout_above="@+id/insertText6"
+                    android:id="@+id/temp4Text_5"
+                    android:layout_above="@+id/temp4Text_6"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="15dp" />
@@ -138,7 +138,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageView4"
+                    android:id="@+id/temp4img_4"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text2"
-                    android:id="@+id/insertText8"
+                    android:id="@+id/temp4Text_8"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
@@ -161,8 +161,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text1"
-                    android:id="@+id/insertText7"
-                    android:layout_above="@+id/insertText8"
+                    android:id="@+id/temp4Text_7"
+                    android:layout_above="@+id/temp4Text_8"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="15dp" />
@@ -178,7 +178,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageView5"
+                android:id="@+id/temp4img_5"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_action_add"
@@ -190,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Text2"
-                android:id="@+id/insertText10"
+                android:id="@+id/temp4Text_10"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -200,8 +200,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Text1"
-                android:id="@+id/insertText9"
-                android:layout_above="@+id/insertText10"
+                android:id="@+id/temp4Text_9"
+                android:layout_above="@+id/temp4Text_10"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>

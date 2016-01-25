@@ -12,7 +12,7 @@ import java.io.File;
 @TargetApi(Build.VERSION_CODES.KITKAT)
 public class StartingActivity extends AppCompatActivity {
     String abPath= Environment.getExternalStorageDirectory().getPath();
-
+    String usbPath="/storage/UsbDriveA";
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,51 +23,54 @@ public class StartingActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(1200);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
 
-                File[] ext=getExternalFilesDirs(null);
-
-                String str= String.valueOf(ext[1]);
-                String tempPath=str+"/Lewi/Edit/temp/";
-                File file1=new File(str+"/Lewi/Edit/temp");
-                File file2=new File(str+"/Lewi/Edit/template");
-                File file3=new File(str+"/Lewi/Edit/capture");
-                File temp1=new File(tempPath+"temp1");
-                File temp2=new File(tempPath+"temp2");
-                File temp3=new File(tempPath+"temp3");
-                File temp4=new File(tempPath+"temp4");
-                File temp5=new File(tempPath+"temp5");
-                if (!file1.exists()){
-                    file1.mkdirs();
-                }
-                if (!file2.exists()){
-                    file2.mkdirs();
-                }
-                if (!file3.exists()){
-                    file3.mkdirs();
-                }
-                if (!temp1.exists()){
-                    temp1.mkdirs();
-                }
-                if (!temp2.exists()){
-                    temp2.mkdirs();
-                }
-                if (!temp3.exists()){
-                    temp3.mkdirs();
-                }
-                if (!temp4.exists()){
-                    temp4.mkdirs();
-                }
-                if (!temp5.exists()){
-                    temp5.mkdirs();
-                }
 
 
+                File file=new File(usbPath);
 
-
+                if (file.exists()) {
+                    String tempPath = usbPath + "/Lewi/Edit/temp/";
+                    File file1 = new File(usbPath + "/Lewi/Edit/temp");
+                    File file2 = new File(usbPath + "/Lewi/Edit/template");
+                    File file3 = new File(usbPath + "/Lewi/Edit/capture");
+                    File file4=new File(usbPath+"/Lewi/Edit/signal");
+                    File temp1 = new File(tempPath + "temp1");
+                    File temp2 = new File(tempPath + "temp2");
+                    File temp3 = new File(tempPath + "temp3");
+                    File temp4 = new File(tempPath + "temp4");
+                    File temp5 = new File(tempPath + "temp5");
+                    if (!file1.exists()) {
+                        file1.mkdirs();
+                    }
+                    if (!file2.exists()) {
+                        file2.mkdirs();
+                    }
+                    if (!file3.exists()) {
+                        file3.mkdirs();
+                    }
+                    if (!file4.exists()){
+                        file4.mkdirs();
+                    }
+                    if (!temp1.exists()) {
+                        temp1.mkdirs();
+                    }
+                    if (!temp2.exists()) {
+                        temp2.mkdirs();
+                    }
+                    if (!temp3.exists()) {
+                        temp3.mkdirs();
+                    }
+                    if (!temp4.exists()) {
+                        temp4.mkdirs();
+                    }
+                    if (!temp5.exists()) {
+                        temp5.mkdirs();
+                    }
+                }
 
                 Intent intent=new Intent(getApplication(),SelectActivity.class);
                 startActivity(intent);

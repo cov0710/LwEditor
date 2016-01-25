@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Text2"
-                android:id="@+id/temp1Text_2"
+                android:id="@+id/temp4Text_2"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -43,7 +43,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Text1"
                 android:id="@+id/temp1Text_1"
-                android:layout_above="@+id/temp1Text_2"
+                android:layout_above="@+id/temp4Text_2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text2"
-                    android:id="@+id/temp1Text_4"
+                    android:id="@+id/temp4Text_4"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
@@ -86,7 +86,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text1"
                     android:id="@+id/temp1Text_3"
-                    android:layout_above="@+id/temp1Text_4"
+                    android:layout_above="@+id/temp4Text_4"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text2"
-                    android:id="@+id/temp1Text_6"
+                    android:id="@+id/temp4Text_6"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
@@ -122,7 +122,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Text1"
                     android:id="@+id/temp1Text_5"
-                    android:layout_above="@+id/temp1Text_6"
+                    android:layout_above="@+id/temp4Text_6"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>

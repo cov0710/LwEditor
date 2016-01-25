@@ -17,13 +17,6 @@ import android.widget.ImageView;
 import com.example.joseph.gellery_image.helper.FileUtils;
 import com.example.joseph.gellery_image.helper.PhotoHelper;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-
 public class EditActivity_1 extends AppCompatActivity implements View.OnClickListener{
     ImageView imageView;
     Bitmap bmp;
@@ -51,10 +44,8 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("image", bmp);
                 intent.putExtra("text1", str1);
                 intent.putExtra("text2", str2);
-
-                //파일복사 코드
-                String pastePath=new File(original).getName();
-                intent.putExtra("filePath",abPath+"/bless/"+pastePath);
+                intent.putExtra("filePath",original);
+                Log.d("deee",original);
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -94,7 +85,6 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
                 bmp = PhotoHelper.getInstance().getThumb(this, filePath);
                 imageView.setImageBitmap(bmp);
                 Log.d("debugging", filePath + "");
-                copyFile(filePath, abPath+"/bless");
                 original=filePath;
             }
         }
@@ -107,60 +97,5 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
             bmp=null;
         }
     }
-    public void copyFile(String copyPath,String pastePath){
-        String fileName=new File(copyPath).getName();
-        File copyFile=new File(copyPath);
-        File pasteFile=new File(pastePath+"/"+fileName);
-        Log.d("debug1",copyFile+"");
-        Log.d("debug2",pasteFile+"");
-        if (copyFile!=pasteFile) {
-            FileInputStream inputStream = null;
-            try {
-                inputStream = new FileInputStream(copyFile);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            FileOutputStream outputStream = null;
-            try {
-                outputStream = new FileOutputStream(pasteFile);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            FileChannel fcin = inputStream.getChannel();
-            FileChannel fcout = outputStream.getChannel();
-            long size = 0;
-            try {
-                size = fcin.size();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            try {
-                fcin.transferTo(0, size, fcout);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                fcout.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                fcin.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Log.d("debug3","성공");
-        }
-    }
 }
