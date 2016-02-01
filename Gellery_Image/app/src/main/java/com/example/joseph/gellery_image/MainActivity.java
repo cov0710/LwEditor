@@ -41,11 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String basePath=abPath+"/Lewi/Edit";
-        File dir=new File(basePath);
-        if (!dir.exists()){
-            dir.mkdirs();
-        }
+
         temp4img_1 =(ImageView)findViewById(R.id.temp4img_1);
         temp4img_2=(ImageView)findViewById(R.id.temp4img_2);
         temp4img_3=(ImageView)findViewById(R.id.temp4img_3);
@@ -77,28 +73,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Bitmap captureView = container.getDrawingCache();
                 FileOutputStream fos;
                 try {
-                    fos = new FileOutputStream(usbPath+"/Lewi/Edit/capture/temp4capture.jpg");
+                    fos = new FileOutputStream(abPath+"/Lewi/Edit/capture/temp4capture.jpg");
                     captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                copyFile(filePath1,usbPath+"/Lewi/Edit/temp/temp4","temp4img_1.jpg");
-                copyFile(filePath2,usbPath+"/Lewi/Edit/temp/temp4","temp4img_2.jpg");
-                copyFile(filePath3,usbPath+"/Lewi/Edit/temp/temp4","temp4img_3.jpg");
-                copyFile(filePath4,usbPath+"/Lewi/Edit/temp/temp4","temp4img_4.jpg");
-                copyFile(filePath5,usbPath+"/Lewi/Edit/temp/temp4","temp4img_5.jpg");
+                copyFile(filePath1,abPath+"/Lewi/Edit/temp/temp4","temp4img_1.jpg");
+                copyFile(filePath2,abPath+"/Lewi/Edit/temp/temp4","temp4img_2.jpg");
+                copyFile(filePath3,abPath+"/Lewi/Edit/temp/temp4","temp4img_3.jpg");
+                copyFile(filePath4,abPath+"/Lewi/Edit/temp/temp4","temp4img_4.jpg");
+                copyFile(filePath5,abPath+"/Lewi/Edit/temp/temp4","temp4img_5.jpg");
 
-                String signalPath=usbPath+"/Lewi/Edit/signal/";
-                File signalFile=new File(signalPath);
-                String[] children=signalFile.list();
-                final int len=signalFile.list().length;
-                for (int i=0;i<len;i++){
-                    String filename=children[i];
-                    File f=new File(signalPath+filename);
-                    f.delete();
-                }
-                File file=new File(signalPath+"signal4");
-                file.mkdirs();
+//                String signalPath=usbPath+"/Lewi/Edit/signal/";
+//                File signalFile=new File(signalPath);
+//                String[] children=signalFile.list();
+//                final int len=signalFile.list().length;
+//                for (int i=0;i<len;i++){
+//                    String filename=children[i];
+//                    File f=new File(signalPath+filename);
+//                    f.delete();
+//                }
+//                File file=new File(signalPath+"signal4");
+//                file.mkdirs();
 
                 Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
                 finish();

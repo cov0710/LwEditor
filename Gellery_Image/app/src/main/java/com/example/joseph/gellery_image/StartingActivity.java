@@ -30,14 +30,13 @@ public class StartingActivity extends AppCompatActivity {
 
 
 
-                File file=new File(usbPath);
 
-                if (file.exists()) {
-                    String tempPath = usbPath + "/Lewi/Edit/temp/";
-                    File file1 = new File(usbPath + "/Lewi/Edit/temp");
-                    File file2 = new File(usbPath + "/Lewi/Edit/template");
-                    File file3 = new File(usbPath + "/Lewi/Edit/capture");
-                    File file4=new File(usbPath+"/Lewi/Edit/signal");
+
+                    String tempPath = abPath + "/Lewi/Edit/temp/";
+                    File file1 = new File(abPath + "/Lewi/Edit/temp");
+                    File file2 = new File(abPath + "/Lewi/Edit/template");
+                    File file3 = new File(abPath + "/Lewi/Edit/capture");
+                    File file4=new File(abPath+"/Lewi/Edit/signal");
                     File temp1 = new File(tempPath + "temp1");
                     File temp2 = new File(tempPath + "temp2");
                     File temp3 = new File(tempPath + "temp3");
@@ -70,7 +69,7 @@ public class StartingActivity extends AppCompatActivity {
                     if (!temp5.exists()) {
                         temp5.mkdirs();
                     }
-                }
+
 
                 Intent intent=new Intent(getApplication(),SelectActivity.class);
                 startActivity(intent);

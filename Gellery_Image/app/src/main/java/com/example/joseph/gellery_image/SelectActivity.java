@@ -7,13 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
-
-import java.io.File;
 
 public class SelectActivity extends AppCompatActivity implements View.OnClickListener{
     FrameLayout frameLayout1,frameLayout2;
-    File file=new File("/storage/UsbDriveA/Lewi");
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +26,8 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.newSlide:
-                if (file.exists()) {
                     Intent intent = new Intent(this, SelectTemplate.class);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(this,"USB인식 실패",Toast.LENGTH_SHORT).show();
-                }
                 break;
         }
 

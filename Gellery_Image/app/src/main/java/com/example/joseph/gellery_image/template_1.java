@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
     LinearLayout container;
     Bitmap bmp=null;
     String usbPath="/storage/UsbDriveA";
+    String abPath= Environment.getExternalStorageDirectory().getPath();
     String filePath1=null;
     String filePath2=null;
     String filePath3=null;
@@ -63,26 +65,26 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
                 Bitmap captureView = container.getDrawingCache();
                 FileOutputStream fos;
                 try {
-                    fos = new FileOutputStream(usbPath+"/Lewi/Edit/capture/temp1capture.jpg");
+                    fos = new FileOutputStream(abPath+"/Lewi/Edit/capture/temp1capture.jpg");
                     captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                copyFile(filePath1, usbPath + "/Lewi/Edit/temp/temp1", "temp1img_1.jpg");
-                copyFile(filePath2, usbPath + "/Lewi/Edit/temp/temp1", "temp1img_2.jpg");
-                copyFile(filePath3, usbPath + "/Lewi/Edit/temp/temp1", "temp1img_3.jpg");
+                copyFile(filePath1, abPath + "/Lewi/Edit/temp/temp1", "temp1img_1.jpg");
+                copyFile(filePath2, abPath + "/Lewi/Edit/temp/temp1", "temp1img_2.jpg");
+                copyFile(filePath3, abPath + "/Lewi/Edit/temp/temp1", "temp1img_3.jpg");
 
-                String signalPath=usbPath+"/Lewi/Edit/signal/";
-                File signalFile=new File(signalPath);
-                String[] children=signalFile.list();
-                final int len=signalFile.list().length;
-                for (int i=0;i<len;i++){
-                    String filename=children[i];
-                    File f=new File(signalPath+filename);
-                    f.delete();
-                }
-                File file=new File(signalPath+"signal1");
-                file.mkdirs();
+//                String signalPath=usbPath+"/Lewi/Edit/signal/";
+//                File signalFile=new File(signalPath);
+//                String[] children=signalFile.list();
+//                final int len=signalFile.list().length;
+//                for (int i=0;i<len;i++){
+//                    String filename=children[i];
+//                    File f=new File(signalPath+filename);
+//                    f.delete();
+//                }
+//                File file=new File(signalPath+"signal1");
+//                file.mkdirs();
                 Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
                 finish();
             }
