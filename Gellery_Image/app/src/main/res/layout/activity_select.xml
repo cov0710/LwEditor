@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="새 슬라이드"
+            android:text="My slide"
             android:id="@+id/newSlide_text"
             android:layout_gravity="center_horizontal|bottom"
             android:textSize="30dp"
@@ -49,11 +49,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="내 슬라이드"
             android:id="@+id/mySlide_text"
             android:layout_gravity="center_horizontal|bottom"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="Play mode" />
     </FrameLayout>
 
 </LinearLayout>

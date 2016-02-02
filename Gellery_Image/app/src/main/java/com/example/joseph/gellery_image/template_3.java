@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,12 +15,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.urza.multipicker.FolderListActivityFragmented;
+import com.urza.multipicker.MediaEntityWrapper;
+import com.urza.multipicker.MultiPicker;
+import com.urza.multipicker.PhotoHelper;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class template_3 extends AppCompatActivity implements View.OnClickListener {
     ImageView temp3img_1,temp3img_2,temp3img_3,temp3img_4,temp3img_5;
@@ -35,10 +48,33 @@ public class template_3 extends AppCompatActivity implements View.OnClickListene
     String filePath4=null;
     String filePath5=null;
 
+    final static String TAG = MainActivity.class.getSimpleName();
+    // static final int ADD_PHOTO_REQUEST = 2;
+    private static final String CURRENT_PHOTO_SELECTION = "currentPhotoSelection";
+    private HashMap<String, List<MediaEntityWrapper>> currentPhotoSelection;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate()");
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .threadPoolSize(Runtime.getRuntime().availableProcessors())
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .diskCacheSize(50 * 1024 * 1024) // 50 Mb
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                        //.writeDebugLogs()
+                .build();
+        Log.d(TAG, "ImageLoaderConfig threadPoolSize: " + Runtime.getRuntime().availableProcessors());
+        ImageLoader.getInstance().init(config);
+        if (currentPhotoSelection == null) {
+            if (savedInstanceState != null)
+                currentPhotoSelection = (HashMap) savedInstanceState.getSerializable(CURRENT_PHOTO_SELECTION);
+            else
+                currentPhotoSelection = new HashMap<String, List<MediaEntityWrapper>>();
+        }
         setContentView(R.layout.activity_template_3);
         temp3img_1=(ImageView)findViewById(R.id.temp3img_1);
         temp3img_2=(ImageView)findViewById(R.id.temp3img_2);
@@ -105,28 +141,35 @@ public class template_3 extends AppCompatActivity implements View.OnClickListene
         });
     }
 
+
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart()");
+    }
+
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent();
+        Intent intent = new Intent();
+        Bundle currentSelection = new Bundle();
         switch (v.getId()){
             case R.id.temp3img_1:
-                intent.setClass(this,EditActivity_1.class);
+                openPhotoGallery(intent,currentSelection);
                 startActivityForResult(intent,100);
                 break;
             case R.id.temp3img_2:
-                intent.setClass(this, EditActivity_1.class);
+                openPhotoGallery(intent,currentSelection);
                 startActivityForResult(intent,200);
                 break;
             case R.id.temp3img_3:
-                intent.setClass(this,EditActivity_1.class);
+                openPhotoGallery(intent, currentSelection);
                 startActivityForResult(intent,300);
                 break;
             case R.id.temp3img_4:
-                intent.setClass(this,EditActivity_1.class);
+                openPhotoGallery(intent, currentSelection);
                 startActivityForResult(intent,400);
                 break;
             case R.id.temp3img_5:
-                intent.setClass(this,EditActivity_1.class);
+                openPhotoGallery(intent, currentSelection);
                 startActivityForResult(intent,500);
                 break;
 
@@ -136,77 +179,170 @@ public class template_3 extends AppCompatActivity implements View.OnClickListene
     protected void onActivityResult(int requestCode, int resultcode, Intent data) {
         if (resultcode == RESULT_OK) {
             if (requestCode == 100) {
-                String str1 = data.getStringExtra("text1");
-                String str2 = data.getStringExtra("text2");
-                bmp = data.getParcelableExtra("image");
-                String str3=data.getStringExtra("filePath");
-                filePath1=str3;
-                temp3text_1.setText(str1);
-                temp3text_2.setText(str2);
-                temp3img_1.setImageBitmap(bmp);
-                temp3img_1.setScaleType(ImageView.ScaleType.FIT_XY);
+                Bundle selectionInfo = data.getExtras();
+                HashMap<String, List<MediaEntityWrapper>> selection = (HashMap) selectionInfo.getSerializable(MultiPicker.SELECTION);
+                Log.d(TAG, "Received selection: " + selection);
+                currentPhotoSelection = selection;
+                ArrayList<MediaMetadata> pics = new ArrayList<MediaMetadata>();
+                for (List<MediaEntityWrapper> folder : selection.values()) {
+                    for (MediaEntityWrapper photo : folder) {
+                        MediaMetadata pic = new MediaMetadata();
+                        pic.setMasterId(photo.getMasterId());
+                        pic.setMimeType(photo.getMimeType());
+                        pic.setFileSize(photo.getSize());
+                        pic.setFilePath(photo.getMasterDataPath());
+                        Log.d("debug123", pic.getFilePath());
+                        Bitmap bmp;
+                        bmp = PhotoHelper.getInstance().getThumb(this, pic.getFilePath());
+                        Log.d("FILE_PATH", bmp + "");
+                        temp3img_1.setImageBitmap(bmp);
+                        temp3img_1.setScaleType(ImageView.ScaleType.FIT_XY);
+                        pics.add(pic);
+                        filePath1=pic.getFilePath();
+                    }
+                }
+                selection.clear();
+                Toast.makeText(this, pics.size() + " photos added.", Toast.LENGTH_SHORT).show();
+            }
 
             }
             if (requestCode == 200) {
-                String str1 = data.getStringExtra("text1");
-                String str2 = data.getStringExtra("text2");
-                bmp = data.getParcelableExtra("image");
-                String str3=data.getStringExtra("filePath");
-                filePath2=str3;
-                temp3text_3.setText(str1);
-                temp3text_4.setText(str2);
-                temp3img_2.setImageBitmap(bmp);
-                temp3img_2.setScaleType(ImageView.ScaleType.FIT_XY);
+                Bundle selectionInfo = data.getExtras();
+                HashMap<String, List<MediaEntityWrapper>> selection = (HashMap) selectionInfo.getSerializable(MultiPicker.SELECTION);
+                Log.d(TAG, "Received selection: " + selection);
+                currentPhotoSelection = selection;
+                ArrayList<MediaMetadata> pics = new ArrayList<MediaMetadata>();
+                for (List<MediaEntityWrapper> folder : selection.values()) {
+                    for (MediaEntityWrapper photo : folder) {
+                        MediaMetadata pic = new MediaMetadata();
+                        pic.setMasterId(photo.getMasterId());
+                        pic.setMimeType(photo.getMimeType());
+                        pic.setFileSize(photo.getSize());
+                        pic.setFilePath(photo.getMasterDataPath());
+                        Log.d("debug123", pic.getFilePath());
+                        Bitmap bmp;
+                        bmp = PhotoHelper.getInstance().getThumb(this, pic.getFilePath());
+                        Log.d("FILE_PATH", bmp + "");
+                        temp3img_2.setImageBitmap(bmp);
+                        temp3img_2.setScaleType(ImageView.ScaleType.FIT_XY);
+                        pics.add(pic);
+                        filePath2=pic.getFilePath();
+                    }
+                }
+                selection.clear();
+                Toast.makeText(this, pics.size() + " photos added.", Toast.LENGTH_SHORT).show();
 
 
             }
             if (requestCode == 300) {
-                String str1 = data.getStringExtra("text1");
-                String str2 = data.getStringExtra("text2");
-                bmp = data.getParcelableExtra("image");
-                String str3=data.getStringExtra("filePath");
-                filePath3=str3;
-                temp3text_5.setText(str1);
-                temp3text_6.setText(str2);
-                temp3img_3.setImageBitmap(bmp);
-                temp3img_3.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                Bundle selectionInfo = data.getExtras();
+                HashMap<String, List<MediaEntityWrapper>> selection = (HashMap) selectionInfo.getSerializable(MultiPicker.SELECTION);
+                Log.d(TAG, "Received selection: " + selection);
+                currentPhotoSelection = selection;
+                ArrayList<MediaMetadata> pics = new ArrayList<MediaMetadata>();
+                for (List<MediaEntityWrapper> folder : selection.values()) {
+                    for (MediaEntityWrapper photo : folder) {
+                        MediaMetadata pic = new MediaMetadata();
+                        pic.setMasterId(photo.getMasterId());
+                        pic.setMimeType(photo.getMimeType());
+                        pic.setFileSize(photo.getSize());
+                        pic.setFilePath(photo.getMasterDataPath());
+                        Log.d("debug123", pic.getFilePath());
+                        Bitmap bmp;
+                        bmp = PhotoHelper.getInstance().getThumb(this, pic.getFilePath());
+                        Log.d("FILE_PATH", bmp + "");
+                        temp3img_3.setImageBitmap(bmp);
+                        temp3img_3.setScaleType(ImageView.ScaleType.FIT_XY);
+                        pics.add(pic);
+                        filePath3=pic.getFilePath();
+                    }
+                }
+                selection.clear();
+                Toast.makeText(this, pics.size() + " photos added.", Toast.LENGTH_SHORT).show();
 
 
             }
             if (requestCode == 400) {
-                String str1 = data.getStringExtra("text1");
-                String str2 = data.getStringExtra("text2");
-                bmp = data.getParcelableExtra("image");
-                String str3=data.getStringExtra("filePath");
-                filePath4=str3;
-                temp3text_7.setText(str1);
-                temp3text_8.setText(str2);
-                temp3img_4.setImageBitmap(bmp);
-                temp3img_4.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                Bundle selectionInfo = data.getExtras();
+                HashMap<String, List<MediaEntityWrapper>> selection = (HashMap) selectionInfo.getSerializable(MultiPicker.SELECTION);
+                Log.d(TAG, "Received selection: " + selection);
+                currentPhotoSelection = selection;
+                ArrayList<MediaMetadata> pics = new ArrayList<MediaMetadata>();
+                for (List<MediaEntityWrapper> folder : selection.values()) {
+                    for (MediaEntityWrapper photo : folder) {
+                        MediaMetadata pic = new MediaMetadata();
+                        pic.setMasterId(photo.getMasterId());
+                        pic.setMimeType(photo.getMimeType());
+                        pic.setFileSize(photo.getSize());
+                        pic.setFilePath(photo.getMasterDataPath());
+                        Log.d("debug123", pic.getFilePath());
+                        Bitmap bmp;
+                        bmp = PhotoHelper.getInstance().getThumb(this, pic.getFilePath());
+                        Log.d("FILE_PATH", bmp + "");
+                        temp3img_4.setImageBitmap(bmp);
+                        temp3img_4.setScaleType(ImageView.ScaleType.FIT_XY);
+                        pics.add(pic);
+                        filePath4=pic.getFilePath();
+                    }
+                }
+                selection.clear();
+                Toast.makeText(this, pics.size() + " photos added.", Toast.LENGTH_SHORT).show();
 
             }
             if (requestCode == 500) {
-                String str1 = data.getStringExtra("text1");
-                String str2 = data.getStringExtra("text2");
-                bmp = data.getParcelableExtra("image");
-                String str3=data.getStringExtra("filePath");
-                filePath5=str3;
-                temp3text_9.setText(str1);
-                temp3text_10.setText(str2);
-                temp3img_5.setImageBitmap(bmp);
-                temp3img_5.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                Bundle selectionInfo = data.getExtras();
+                HashMap<String, List<MediaEntityWrapper>> selection = (HashMap) selectionInfo.getSerializable(MultiPicker.SELECTION);
+                Log.d(TAG, "Received selection: " + selection);
+                currentPhotoSelection = selection;
+                ArrayList<MediaMetadata> pics = new ArrayList<MediaMetadata>();
+                for (List<MediaEntityWrapper> folder : selection.values()) {
+                    for (MediaEntityWrapper photo : folder) {
+                        MediaMetadata pic = new MediaMetadata();
+                        pic.setMasterId(photo.getMasterId());
+                        pic.setMimeType(photo.getMimeType());
+                        pic.setFileSize(photo.getSize());
+                        pic.setFilePath(photo.getMasterDataPath());
+                        Log.d("debug123", pic.getFilePath());
+                        Bitmap bmp;
+                        bmp = PhotoHelper.getInstance().getThumb(this, pic.getFilePath());
+                        Log.d("FILE_PATH", bmp + "");
+                        temp3img_5.setImageBitmap(bmp);
+                        temp3img_5.setScaleType(ImageView.ScaleType.FIT_XY);
+                        pics.add(pic);
+                        filePath5=pic.getFilePath();
+                    }
+                }
+                selection.clear();
+                Toast.makeText(this, pics.size() + " photos added.", Toast.LENGTH_SHORT).show();
 
             }
 
         }
+
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume()");
     }
-    @Override
-    public void onDestroy(){
+
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause()");
+    }
+
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop()");
+    }
+
+    public void onSaveInstanceState(Bundle outstate){
+        super.onSaveInstanceState(outstate);
+        Log.d(TAG, "onSaveInstanceState()");
+        outstate.putSerializable(CURRENT_PHOTO_SELECTION, currentPhotoSelection);
+    }
+
+    public void onDestroy() {
         super.onDestroy();
-        if (bmp!=null){
-            bmp.recycle();
-            bmp=null;
-        }
+        Log.d(TAG, "onDestroy()");
     }
 
 
@@ -261,5 +397,13 @@ public class template_3 extends AppCompatActivity implements View.OnClickListene
                 e.printStackTrace();
             }
         }
+    }
+    public void openPhotoGallery(Intent intent,Bundle currentSelection){
+        intent.setClass(this,FolderListActivityFragmented.class);
+        intent.putExtra(MultiPicker.MEDIATYPE_CHOICE, MultiPicker.IMAGE_LOADER);
+        Log.d("de",123+"");
+        currentSelection.putSerializable(MultiPicker.SELECTION, currentPhotoSelection);
+        Log.d(TAG, "to Intent - Adding selection data: " + currentPhotoSelection);
+        intent.putExtras(currentSelection);
     }
 }
