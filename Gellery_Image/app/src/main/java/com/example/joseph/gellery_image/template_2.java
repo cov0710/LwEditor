@@ -177,7 +177,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_1.setText(str1);
                 temp2Text_2.setText(str2);
                 temp2img_1.setImageBitmap(bmp);
-                temp2img_1.setScaleType(ImageView.ScaleType.CENTER);
+                temp2img_1.setScaleType(ImageView.ScaleType.FIT_XY);
             }
             if (requestCode == 200) {
                 String str1 = data.getStringExtra("text1");
@@ -188,7 +188,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_3.setText(str1);
                 temp2Text_4.setText(str2);
                 temp2img_2.setImageBitmap(bmp);
-                temp2img_2.setScaleType(ImageView.ScaleType.CENTER);
+                temp2img_2.setScaleType(ImageView.ScaleType.FIT_XY);
 
 
             }
@@ -201,7 +201,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_5.setText(str1);
                 temp2Text_6.setText(str2);
                 temp2img_3.setImageBitmap(bmp);
-                temp2img_3.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp2img_3.setScaleType(ImageView.ScaleType.FIT_XY);
 
 
             }
@@ -214,7 +214,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_7.setText(str1);
                 temp2Text_8.setText(str2);
                 temp2img_4.setImageBitmap(bmp);
-                temp2img_4.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp2img_4.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
             if (requestCode == 500) {
@@ -226,7 +226,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_9.setText(str1);
                 temp2Text_10.setText(str2);
                 temp2img_5.setImageBitmap(bmp);
-                temp2img_5.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp2img_5.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
             if (requestCode == 600) {
@@ -238,7 +238,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_11.setText(str1);
                 temp2Text_12.setText(str2);
                 temp2img_6.setImageBitmap(bmp);
-                temp2img_6.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp2img_6.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
             if (requestCode == 700) {
@@ -250,7 +250,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_13.setText(str1);
                 temp2Text_14.setText(str2);
                 temp2img_7.setImageBitmap(bmp);
-                temp2img_7.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp2img_7.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
             if (requestCode == 800) {
@@ -262,7 +262,7 @@ public class template_2 extends AppCompatActivity implements View.OnClickListene
                 temp2Text_15.setText(str1);
                 temp2Text_16.setText(str2);
                 temp2img_8.setImageBitmap(bmp);
-                temp2img_8.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp2img_8.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
         }

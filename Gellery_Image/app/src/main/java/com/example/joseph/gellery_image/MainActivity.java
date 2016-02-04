@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 temp4Text_1.setText(str1);
                 temp4Text_2.setText(str2);
                 temp4img_1.setImageBitmap(bmp);
-                temp4img_1.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                temp4img_1.setScaleType(ImageView.ScaleType.FIT_XY);
 
             }
             if (requestCode==200) {

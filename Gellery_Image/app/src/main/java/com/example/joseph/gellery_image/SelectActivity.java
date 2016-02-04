@@ -30,8 +30,9 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
                     startActivity(intent);
                 break;
             case R.id.mySlide:
-                    Intent intent1=new Intent(this,PlayModeActivity.class);
-                startActivity(intent1);
+                    Intent intent1 = new Intent(this, PlayModeActivity.class);
+                    startActivity(intent1);
+
         }
 
     }

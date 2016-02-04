@@ -42,7 +42,10 @@
             -->
         </activity>
         <activity android:name=".PlayModeActivity" />
-        <activity android:name=".SinglePlay_template3"></activity>
+        <activity android:name=".SinglePlay_template3" />
+        <activity android:name=".MultiTemplate" />
+        <activity android:name=".SingleMedia" />
+        <activity android:name=".OneMediaTemplate"></activity>
     </application>
 
 </manifest>
