@@ -45,7 +45,8 @@
         <activity android:name=".SinglePlay_template3" />
         <activity android:name=".MultiTemplate" />
         <activity android:name=".SingleMedia" />
-        <activity android:name=".OneMediaTemplate"></activity>
+        <activity android:name=".OneMediaTemplate" />
+        <activity android:name=".SingleMediaActivity"/>
     </application>
 
 </manifest>

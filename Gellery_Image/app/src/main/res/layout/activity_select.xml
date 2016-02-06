@@ -5,55 +5,79 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:id="@+id/newSlide"
-        android:padding="60dp"
-        android:background="@drawable/selectframe">
+        android:layout_weight="1">
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/newSlide_image"
-            android:src="@drawable/ic_description_grey600_48dp" />
+            android:layout_weight="1"
+            android:background="@drawable/values"
+            android:id="@+id/select_1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="My slide"
-            android:id="@+id/newSlide_text"
-            android:layout_gravity="center_horizontal|bottom"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-    </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Single"
+                android:id="@+id/selectText_1"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="40dp" />
+        </RelativeLayout>
 
-    <FrameLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/values"
+            android:id="@+id/select_2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Multi"
+                android:id="@+id/selectText_2"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="40dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:id="@+id/mySlide"
-        android:padding="60dp"
-        android:background="@drawable/selectframe">
+        android:layout_weight="1">
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/mySlide_image"
-            android:src="@drawable/ic_assignment_grey600_48dp" />
+            android:layout_weight="1"
+            android:background="@drawable/values"
+            android:id="@+id/select_3">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/mySlide_text"
-            android:layout_gravity="center_horizontal|bottom"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:text="Play mode" />
-    </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Template"
+                android:id="@+id/selectText_3"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="40dp"
+                android:gravity="center" />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/values"
+            android:id="@+id/select_4" />
+    </LinearLayout>
 </LinearLayout>

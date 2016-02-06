@@ -22,7 +22,6 @@ public class PlayModeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        textView2=(TextView)findViewById(R.id.textView2);
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +29,12 @@ public class PlayModeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(PlayModeActivity.this,SingleMedia.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -19,6 +19,7 @@ public class TemplateAdpater extends BaseAdapter{
     Context context=null;
     int[] imageIDs=null;
 
+
     public TemplateAdpater(Context context,int[] imageIDs){
         this.context=context;
         this.imageIDs=imageIDs;

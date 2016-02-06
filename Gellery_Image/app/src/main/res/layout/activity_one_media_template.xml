@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="내 슬라이드"
-        android:id="@+id/textView5" />
+        android:id="@+id/textView" />
 
     <GridView
         android:layout_width="match_parent"

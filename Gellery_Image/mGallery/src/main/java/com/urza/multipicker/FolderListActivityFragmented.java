@@ -1,7 +1,9 @@
 package com.urza.multipicker;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -461,12 +464,16 @@ public class FolderListActivityFragmented extends FragmentActivity
         //Handle the final selection user has chosen
         //for example finish the activity and include selection in result
         Log.d(TAG, "Selection confirmed: " + selection.toString());
-        Intent result = new Intent("com.urza.mediapicker.RESULT_ACTION");
-        Bundle selectedMedia = new Bundle();
-        selectedMedia.putSerializable(MultiPicker.SELECTION, selection);
-        result.putExtras(selectedMedia);
-        setResult(FragmentActivity.RESULT_OK, result);
-        finish();
+        if (selection.size()!=0) {
+            Intent result = new Intent("com.urza.mediapicker.RESULT_ACTION");
+            Bundle selectedMedia = new Bundle();
+            selectedMedia.putSerializable(MultiPicker.SELECTION, selection);
+            result.putExtras(selectedMedia);
+            setResult(FragmentActivity.RESULT_OK, result);
+            finish();
+        }else {
+            Toast.makeText(this,"선택된 사진이 없습니다",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -510,4 +517,40 @@ public class FolderListActivityFragmented extends FragmentActivity
                     + " name: " + fm.getBackStackEntryAt(i).getName());
         }
     }
+    private class CheckTypesTask extends AsyncTask<Void, Void, Void> {
+
+        ProgressDialog asyncDialog = new ProgressDialog(
+                FolderListActivityFragmented.this);
+
+        @Override
+        protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("로딩중입니다..");
+
+            // show dialog
+            asyncDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    //asyncDialog.setProgress(i * 30);
+                    Thread.sleep(500);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            asyncDialog.dismiss();
+            super.onPostExecute(result);
+        }
+
+    }
+
 }
