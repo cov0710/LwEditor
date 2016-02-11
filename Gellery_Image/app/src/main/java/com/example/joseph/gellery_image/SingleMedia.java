@@ -223,40 +223,43 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
                         //============파일이름 받아와서 폴더만들고 초 지정해주는 count폴더 생성, numberpicker값도 받아와서 그안에 숫자폴더생성==========
                         String value = input.getText().toString();
                         value.toString();
-                        File file=new File(savePath+"/"+value);
-                        File countFile=new File(savePath+"/"+value+"/count");
-                        if (!file.exists()){
+                        File file = new File(savePath + "/" + value);
+                        File countFile = new File(savePath + "/" + value + "/count");
+                        if (!file.exists()) {
                             file.mkdirs();
                         }
-                        if (!countFile.exists()){
+                        if (!countFile.exists()) {
                             countFile.mkdirs();
                         }
-                        File dFile = new File(savePath+"/"+value+"/count");
+                        File dFile = new File(savePath + "/" + value + "/count");
                         String[] children = dFile.list();
                         final int len = dFile.list().length;
                         for (int i = 0; i < len; i++) {
                             String filename = children[i];
-                            File f = new File(savePath+"/"+value+"/count"+ filename);
+                            File f = new File(savePath + "/" + value + "/count" + filename);
                             f.delete();
                         }
                         int i = numberPicker.getValue();
                         int j = numberPicker2.getValue() * 60;
                         int sum = i + j;
-                        File file1 = new File(savePath+"/"+value+"/count/" + sum);
+                        File file1 = new File(savePath + "/" + value + "/count/" + sum);
                         if (!file1.exists()) {
                             file1.mkdirs();
                         }
 
                         //=========파일이름 받아와서 폴더만들고 ~~끝==================================
-                        for (int c=0;c<imgArr1.length;c++){
-                            Reference1.copyFile(imgArr1[c],savePath+"/"+value,value+"_"+c);
+                        for (int c = 0; c < imgArr1.length; c++) {
+                            Reference1.copyFile(imgArr1[c], savePath + "/" + value, value + "_" + c);
                         }
+
+                        Toast.makeText(SingleMedia.this, "저장 완료", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 });
                 alert.setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                            dialog.cancel();
+                                dialog.cancel();
                             }
                         });
                 alert.show();

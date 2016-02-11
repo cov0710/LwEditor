@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 FileOutputStream fos;
                 try {
                     fos = new FileOutputStream(abPath+"/Lewi/Edit/capture/temp4capture.jpg");
-                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    captureView.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

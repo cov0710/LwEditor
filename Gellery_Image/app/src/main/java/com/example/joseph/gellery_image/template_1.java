@@ -104,7 +104,7 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
                 FileOutputStream fos;
                 try {
                     fos = new FileOutputStream(abPath + "/Lewi/Edit/capture/temp1capture.jpg");
-                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    captureView.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -269,30 +269,7 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
     }
-//    public void createThumbnail(Bitmap bitmap, String strFilePath, String filename){
-//        File file=new File(strFilePath);
-//        if (!file.exists()){
-//            file.mkdirs();
-//        }
-//        File fileCacheItem=new File(strFilePath+filename);
-//        OutputStream out=null;
-//
-//        try {
-//            fileCacheItem.createNewFile();
-//            out=new FileOutputStream(fileCacheItem);
-//            bitmap = Bitmap.createScaledBitmap(bitmap, 1920,1080, true);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }finally {
-//            try {
-//                out.close();
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+
     public void copyFile(String copyPath,String pastePath,String fileName){
         File copyFile=new File(copyPath);
         File pasteFile=new File(pastePath+"/"+fileName);

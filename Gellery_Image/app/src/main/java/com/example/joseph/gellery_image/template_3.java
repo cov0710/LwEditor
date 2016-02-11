@@ -113,7 +113,7 @@ public class template_3 extends AppCompatActivity implements View.OnClickListene
                 FileOutputStream fos;
                 try {
                     fos = new FileOutputStream(abPath+"/Lewi/Edit/capture/temp3capture.jpg");
-                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    captureView.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

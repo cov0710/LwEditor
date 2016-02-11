@@ -33,7 +33,7 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
                     Intent intent = new Intent(this,SingleMediaActivity.class);
                     startActivity(intent);
                 break;
-            case R.id.select_2:
+            case R.id.select_3:
                     Intent intent1 = new Intent(this, SelectTemplate.class);
                     startActivity(intent1);
 
