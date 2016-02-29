@@ -39,8 +39,7 @@ public class FolderDetailFragment extends Fragment implements LoaderManager.Load
     private GridView mGridView;
     private MediaEntityBaseAdapter mAdapter;
     private HashMap<String, List<MediaEntityWrapper>> selection;
-
-
+    static int i=0;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -79,7 +78,7 @@ public class FolderDetailFragment extends Fragment implements LoaderManager.Load
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_folder_detail, container, false);
@@ -96,16 +95,26 @@ public class FolderDetailFragment extends Fragment implements LoaderManager.Load
                         } else {
                             selection.get(parentIndex).add((MediaEntityWrapper) mAdapter.getItem(position));
                             Log.d(TAG, "Item was ADDED");
+                            Log.d("dede", ((MediaEntityWrapper) mAdapter.getItem(position)).getMasterDataPath());
                             mCallback.onEntitySelected(selection, parentIndex);
+//                            Intent intent = new Intent();
+//                            intent.setClass(getContext(), BigImage.class);
+//                            intent.putExtra("path", ((MediaEntityWrapper) mAdapter.getItem(position)).getMasterDataPath());
+//                            startActivity(intent);
                         }
                         Log.d(TAG, "Checked item Id: " + id);
                         Log.d(TAG, "Checked item Ids: " + Arrays.toString(((GridView) parent).getCheckedItemIds()));
                         Log.d(TAG, "Num of checked items: " + ((GridView) parent).getCheckedItemCount());
+                        i = ((GridView) parent).getCheckedItemCount();
+
                     }
                 }
         );
         return rootView;
     }
+
+
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

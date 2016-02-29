@@ -10,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.example.joseph.gellery_image.template.MainActivity;
+import com.example.joseph.gellery_image.template.template_1;
+import com.example.joseph.gellery_image.template.template_2;
+import com.example.joseph.gellery_image.template.template_3;
+
 /**
  * Created by Joseph on 2016-01-21.
  */

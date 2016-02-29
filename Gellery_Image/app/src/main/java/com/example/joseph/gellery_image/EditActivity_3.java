@@ -1,18 +1,15 @@
 package com.example.joseph.gellery_image;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,7 +17,6 @@ import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.example.joseph.gellery_image.reference.Reference1;
 import com.example.joseph.gellery_image.template.MainActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -31,30 +27,32 @@ import com.urza.multipicker.MediaEntityWrapper;
 import com.urza.multipicker.MultiPicker;
 import com.urza.multipicker.PhotoHelper;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SingleMedia extends AppCompatActivity implements View.OnClickListener{
+public class EditActivity_3 extends AppCompatActivity implements View.OnClickListener {
 
     final static String TAG = MainActivity.class.getSimpleName();
     static final int ADD_PHOTO_REQUEST = 2;
     private static final String CURRENT_PHOTO_SELECTION = "currentPhotoSelection";
     private HashMap<String, List<MediaEntityWrapper>> currentPhotoSelection;
-
+    String filePath=null;
     ImageView imageView;
-    int count=0;
-    LinearLayout linearLayout;
+    int count;
     HorizontalScrollView horizontalScrollView;
+    LinearLayout linearLayout;
+    Button button1,button2;
+    String thumb;
     RelativeLayout relativeLayout;
-    Button button,button2;
-    NumberPicker numberPicker,numberPicker2;
-
-    String savePath=Environment.getExternalStorageDirectory().getPath()+"/Lewi/Edit/singleMedia";
+    String savePath= Environment.getExternalStorageDirectory().getPath()+"/Lewi/Edit/singleMedia";
     String[] imgArr=null;
     String[] imgArr1=null;
     ArrayList<String> list1 = new ArrayList<String>();
+
+
+
+    NumberPicker numberPicker,numberPicker2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,26 +68,23 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
                 .build();
         Log.d(TAG, "ImageLoaderConfig threadPoolSize: " + Runtime.getRuntime().availableProcessors());
         ImageLoader.getInstance().init(config);
-
         if (currentPhotoSelection == null) {
             if (savedInstanceState != null)
                 currentPhotoSelection = (HashMap) savedInstanceState.getSerializable(CURRENT_PHOTO_SELECTION);
             else
                 currentPhotoSelection = new HashMap<String, List<MediaEntityWrapper>>();
         }
-
-        setContentView(R.layout.activity_single_media);
+        setContentView(R.layout.activity_edit_activity_3);
         imageView=(ImageView)findViewById(R.id.imageView);
-        linearLayout=(LinearLayout)findViewById(R.id.scollView);
-        button=(Button)findViewById(R.id.selectImage);
-        button.setOnClickListener(this);
+        linearLayout=(LinearLayout)findViewById(R.id.scrollView);
+        button1=(Button)findViewById(R.id.button1);
         button2=(Button)findViewById(R.id.button2);
+        button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         imageView.setOnClickListener(this);
         horizontalScrollView=(HorizontalScrollView)findViewById(R.id.horizontalScrollView);
         relativeLayout=(RelativeLayout)findViewById(R.id.container);
         relativeLayout.setOnClickListener(this);
-
 
         numberPicker=(NumberPicker)findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
@@ -99,15 +94,11 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
         numberPicker2.setMaxValue(59);
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker2.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
-
-
     }
     public void onStart(){
         super.onStart();
         Log.d(TAG, "onStart()");
     }
-
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         ArrayList<String> list = new ArrayList<String>();
         Log.d(TAG, "Received result with code " + requestCode);
@@ -122,6 +113,7 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
                     currentPhotoSelection = selection;
                     ArrayList<MediaMetadata> pics = new ArrayList<MediaMetadata>();
                     linearLayout.removeAllViews();
+                    count=0;
                     for (List<MediaEntityWrapper> folder : selection.values()) {
                         for(MediaEntityWrapper photo : folder){
                             MediaMetadata pic = new MediaMetadata();
@@ -140,7 +132,6 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
                             pics.add(pic);
 
                         }
-
                         imgArr = new String[list.size()];
                         imgArr1=new String[list1.size()];
                         for (int i=0;i<list.size();i++){
@@ -158,10 +149,11 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
                             qw.setImageBitmap(resized);
                             qw.setScaleType(ImageView.ScaleType.FIT_XY);
                             linearLayout.addView(qw);
+                            if (i==0){
+                                thumb=imgArr[0];
+                            }
                         }
                         list.clear();
-                        count=0;
-
                     }
                     selection.clear();
                     Toast.makeText(this, pics.size() + " photos added.", Toast.LENGTH_SHORT).show();
@@ -174,7 +166,6 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
         }
 
     }
-
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume()");
@@ -200,83 +191,28 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
     }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.selectImage:
-
+            case R.id.button1:
                 openPhotoGallery();
                 break;
             case R.id.button2:
-
-                //=====텍스트입력다이얼로그 시작======
-
-                final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.setTitle("알림");
-                alert.setMessage("사진의 제목을 입력하세요.");
-
-                // Set an EditText view to get user input
-                final EditText input = new EditText(this);
-                alert.setView(input);
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                        //============파일이름 받아와서 폴더만들고 초 지정해주는 count폴더 생성, numberpicker값도 받아와서 그안에 숫자폴더생성==========
-                        String value = input.getText().toString();
-                        value.toString();
-                        File file = new File(savePath + "/" + value);
-                        File countFile = new File(savePath + "/" + value + "/count");
-                        if (!file.exists()) {
-                            file.mkdirs();
-                        }
-                        if (!countFile.exists()) {
-                            countFile.mkdirs();
-                        }
-                        File dFile = new File(savePath + "/" + value + "/count");
-                        String[] children = dFile.list();
-                        final int len = dFile.list().length;
-                        for (int i = 0; i < len; i++) {
-                            String filename = children[i];
-                            File f = new File(savePath + "/" + value + "/count" + filename);
-                            f.delete();
-                        }
-                        int i = numberPicker.getValue();
-                        int j = numberPicker2.getValue() * 60;
-                        int sum = i + j;
-                        File file1 = new File(savePath + "/" + value + "/count/" + sum);
-                        if (!file1.exists()) {
-                            file1.mkdirs();
-                        }
-
-                        //=========파일이름 받아와서 폴더만들고 ~~끝==================================
-                        for (int c = 0; c < imgArr1.length; c++) {
-                            Reference1.copyFile(imgArr1[c], savePath + "/" + value, value + "_" + c);
-                        }
-
-                        Toast.makeText(SingleMedia.this, "저장 완료", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                });
-                alert.setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.cancel();
-                            }
-                        });
-                alert.show();
-
-                //===========텍스트입력 다이얼로그 끝===========
-
-
-
-                break;
-                    default:
-                        Log.d(TAG, "Unknown: " + v.getId());
+                Intent intent=getIntent();
+                intent.putExtra("image",thumb);
+                intent.putExtra("count",count);
+                int i = numberPicker.getValue();
+                int j = numberPicker2.getValue() * 60;
+                int sum = i + j;
+                intent.putExtra("time",sum);
+                for (int q=0;q<imgArr.length;q++){
+                    Log.d("dddd", imgArr[q]);
+                }
+                intent.putExtra("images",imgArr);
+                setResult(RESULT_OK,intent);
+                finish();
                 break;
         }
-        list1.clear();
     }
     public void openPhotoGallery(){
         Log.d(TAG, "Started MultiPicker for result with requestCode: " + ADD_PHOTO_REQUEST);
@@ -288,8 +224,4 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
         intent.putExtras(currentSelection);
         startActivityForResult(intent, ADD_PHOTO_REQUEST);
     }
-
-
-
-
-    }
+}

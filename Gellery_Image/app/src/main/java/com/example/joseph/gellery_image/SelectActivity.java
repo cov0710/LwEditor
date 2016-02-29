@@ -36,6 +36,12 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.select_3:
                     Intent intent1 = new Intent(this, SelectTemplate.class);
                     startActivity(intent1);
+                break;
+            case R.id.select_2:
+                Intent intent2=new Intent();
+                intent2.setClassName(this,"com.example.joseph.gellery_image.multiTemplate.multiTemplate_1");
+                startActivity(intent2);
+
 
         }
 

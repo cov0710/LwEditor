@@ -11,13 +11,7 @@
         android:label="LwEditor"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" />
         <activity android:name=".EditActivity_1" />
-        <activity android:name=".template_1" />
-        <activity android:name=".template_2" />
-        <activity android:name=".template_3" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".StartingActivity">
             <intent-filter>
@@ -30,6 +24,7 @@
         <activity android:name=".template.template_2" />
         <activity android:name=".SelectTemplate" />
         <activity android:name=".template.template_3" />
+        <activity android:name=".template.MainActivity" />
         <activity
             android:name="com.urza.multipicker.FolderListActivityFragmented"
             android:label="@string/app_name">
@@ -46,7 +41,10 @@
         <activity android:name=".MultiTemplate" />
         <activity android:name=".SingleMedia" />
         <activity android:name=".OneMediaTemplate" />
-        <activity android:name=".SingleMediaActivity"/>
+        <activity android:name=".SingleMediaActivity" />
+        <activity android:name=".multiTemplate.multiTemplate_1" />
+        <activity android:name=".EditActivity_2" />
+        <activity android:name=".EditActivity_3"></activity>
     </application>
 
 </manifest>

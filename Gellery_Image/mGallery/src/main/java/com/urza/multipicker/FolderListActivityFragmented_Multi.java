@@ -39,10 +39,10 @@ import static com.urza.multipicker.FolderDetailFragment.ARG_FOLDER_NAME;
  * {@link FolderListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class FolderListActivityFragmented extends FragmentActivity
+public class FolderListActivityFragmented_Multi extends FragmentActivity
         implements FolderListFragment.Callbacks, FolderDetailFragment.OnEntitySelectedListener {
 
-    final static String TAG = FolderListActivityFragmented.class.getSimpleName();
+    final static String TAG = FolderListActivityFragmented_Multi.class.getSimpleName();
     final static String TAG_TWOPANE = "2";
 
     private static final String WAS_TWO_PANE = "WAS_TWO_PANE";
@@ -416,7 +416,7 @@ public class FolderListActivityFragmented extends FragmentActivity
             CurrentSelectionFragment f = new CurrentSelectionFragment();
             f.setArguments(selectionInfo);
             if (getResources().getBoolean(R.bool.twoPane)) {
-//                selectionEvent.selectionToggled(true);
+                selectionEvent.selectionToggled(true);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.folder_detail_container_fragmented, f,
                         CurrentSelectionFragment.TAG+TAG_TWOPANE);
@@ -434,7 +434,7 @@ public class FolderListActivityFragmented extends FragmentActivity
             view.setActivated(false);
             toggleSelectedButtons(false);
             if (getResources().getBoolean(R.bool.twoPane)) {
-//                selectionEvent.selectionToggled(false);
+                selectionEvent.selectionToggled(false);
                 getSupportFragmentManager().popBackStack();
             } else {
                 getSupportFragmentManager().popBackStack();
@@ -473,11 +473,7 @@ public class FolderListActivityFragmented extends FragmentActivity
             finish();
         }else {
             Toast.makeText(this,"선택된 사진이 없습니다",Toast.LENGTH_SHORT).show();
-
         }
-
-
-
     }
 
     @Override
@@ -524,7 +520,7 @@ public class FolderListActivityFragmented extends FragmentActivity
     private class CheckTypesTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog asyncDialog = new ProgressDialog(
-                FolderListActivityFragmented.this);
+                FolderListActivityFragmented_Multi.this);
 
         @Override
         protected void onPreExecute() {

@@ -19,7 +19,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.urza.multipicker.PhotoHelper;
 
@@ -102,7 +101,6 @@ public class SingleMediaActivity extends AppCompatActivity{
 
                     }
                 } else {
-                    Toast.makeText(SingleMediaActivity.this,"하나님 사랑해요",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(SingleMediaActivity.this,SingleMedia.class);
                     startActivity(intent);
                 }
