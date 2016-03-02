@@ -2,25 +2,20 @@ package com.example.joseph.gellery_image.template;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.joseph.gellery_image.EditActivity_1;
 import com.example.joseph.gellery_image.R;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import com.example.joseph.gellery_image.reference.Reference1;
 
 @TargetApi(Build.VERSION_CODES.KITKAT)
 public class template_1 extends AppCompatActivity implements View.OnClickListener {
@@ -33,7 +28,6 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
     Button button;
     LinearLayout container;
     String abPath = Environment.getExternalStorageDirectory().getPath();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,18 +46,9 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                container.buildDrawingCache();
-                Bitmap captureView = container.getDrawingCache();
-                FileOutputStream fos;
-                try {
-                    fos = new FileOutputStream(abPath + "/Lewi/Edit/capture/temp1capture.png");
-                    Log.d("ew","we");
-                    captureView.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
+                Reference1.ImageCapture(getApplicationContext(),container);
                 finish();
+
             }
         });
     }

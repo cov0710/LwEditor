@@ -41,7 +41,8 @@ public class EditActivity_2 extends AppCompatActivity implements View.OnClickLis
     LinearLayout linearLayout;
     Button button1,button2;
     String thumb;
-    String[] imgArr
+    String[] imgArr1 =null;
+    ArrayList<String> list1=new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,14 +101,20 @@ public class EditActivity_2 extends AppCompatActivity implements View.OnClickLis
                             vid.setFilePath(video.getMasterDataPath());
                             Log.d("debug123", vid.getFilePath());
                             list.add(vid.filePath);
+                            list1.add(vid.filePath);
                             vids.add(vid);
                         }
                         String[] imgArr = new String[list.size()];
+                        imgArr1=new String[list1.size()];
                         count=0;
                         for (int i=0;i<list.size();i++){
                             imgArr[i]=list.get(i);
+                            imgArr1[i]=list1.get(i);
                             Log.d("debug00", imgArr[i]);
                             count++;
+                        }
+                        for (int i=0;i<imgArr1.length;i++){
+                            Log.d("rrrr",imgArr1[i]);
                         }
                         for (int i=0;i<imgArr.length;i++){
                             View view;
@@ -180,7 +187,7 @@ public class EditActivity_2 extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("image",thumb);
                 Log.d("qaa", count + "");
                 intent.putExtra("count",count);
-                intent.putExtra("videos",)
+                intent.putExtra("videos",imgArr1);
                 setResult(RESULT_OK, intent);
                 finish();
                 break;

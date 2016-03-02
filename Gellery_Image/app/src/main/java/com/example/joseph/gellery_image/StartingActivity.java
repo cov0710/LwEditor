@@ -29,12 +29,10 @@ public class StartingActivity extends AppCompatActivity {
                 }
 
 
-
-
                     String tempPath = abPath + "/Lewi/Edit/temp/";
                     File file1 = new File(abPath + "/Lewi/Edit/temp");
                     File file2 = new File(abPath + "/Lewi/Edit/template");
-                    File file3 = new File(abPath + "/Lewi/Edit/capture");
+                    File file3 = new File(abPath + "/Lewi/Edit/LwTemp");
                     File file4=new File(abPath+"/Lewi/Edit/signal");
                     File file5=new File(abPath+"/Lewi/Edit/singleMedia");
                     File temp1 = new File(tempPath + "temp1");
@@ -50,6 +48,7 @@ public class StartingActivity extends AppCompatActivity {
                     }
                     if (!file3.exists()) {
                         file3.mkdirs();
+
                     }
                     if (!file4.exists()){
                         file4.mkdirs();

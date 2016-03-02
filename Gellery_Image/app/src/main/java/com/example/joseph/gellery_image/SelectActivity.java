@@ -5,8 +5,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class SelectActivity extends AppCompatActivity implements View.OnClickListener{
     RelativeLayout select_1,select_2,select_3,select_4;
@@ -23,6 +28,8 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
         select_2.setOnClickListener(this);
         select_3.setOnClickListener(this);
         select_4.setOnClickListener(this);
+
+
 
     }
 

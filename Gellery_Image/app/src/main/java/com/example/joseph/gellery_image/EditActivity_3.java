@@ -130,7 +130,6 @@ public class EditActivity_3 extends AppCompatActivity implements View.OnClickLis
                             list1.add(pic.filePath);
                             count++;
                             pics.add(pic);
-
                         }
                         imgArr = new String[list.size()];
                         imgArr1=new String[list1.size()];

@@ -2,7 +2,6 @@ package com.example.joseph.gellery_image.template;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,13 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.joseph.gellery_image.EditActivity_1;
 import com.example.joseph.gellery_image.R;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import com.example.joseph.gellery_image.reference.Reference1;
 
 public class template_3 extends AppCompatActivity implements View.OnClickListener {
     ImageView temp3img_1,temp3img_2,temp3img_3,temp3img_4,temp3img_5;
@@ -51,17 +47,7 @@ public class template_3 extends AppCompatActivity implements View.OnClickListene
             @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                container.buildDrawingCache();
-                Bitmap captureView = container.getDrawingCache();
-                FileOutputStream fos;
-                try {
-                    fos = new FileOutputStream(abPath + "/Lewi/Edit/capture/temp3capture.png");
-                    captureView.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
+                Reference1.ImageCapture(getApplicationContext(), container);
                 finish();
             }
         });
