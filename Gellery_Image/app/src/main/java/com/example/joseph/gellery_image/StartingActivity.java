@@ -23,11 +23,10 @@ public class StartingActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1200);
+                    Thread.sleep(1000);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
-
 
                     String tempPath = abPath + "/Lewi/Edit/temp/";
                     File file1 = new File(abPath + "/Lewi/Edit/temp");

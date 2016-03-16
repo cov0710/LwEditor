@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/temp3img_1"
                 android:src="@drawable/ic_action_add"
-                android:background="@drawable/values"
+                android:background="#0054FF"
                 android:scaleType="center" />
 
             <TextView
@@ -64,7 +64,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:background="@drawable/values"
+                    android:background="#8041D9"
                     android:scaleType="center" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:background="@drawable/values"
+                    android:background="#B5B2FF"
                     android:scaleType="center" />
 
                 <TextView
@@ -143,7 +143,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:background="@drawable/values"
+                    android:background="#B5B2FF"
                     android:scaleType="center" />
 
                 <TextView
@@ -179,7 +179,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:background="@drawable/values"
+                    android:background="#8041D9"
                     android:scaleType="center" />
 
                 <TextView
@@ -211,6 +211,7 @@
         android:text="저장"
         android:id="@+id/button"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:background="#ffffff" />
 
 </LinearLayout>

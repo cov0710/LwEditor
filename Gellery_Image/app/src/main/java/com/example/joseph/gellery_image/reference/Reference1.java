@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,11 +25,10 @@ public class Reference1 {
 
      public static int refTemp1;
 
+     //===================파일 복사========================
      public static  void copyFile(String copyPath,String pastePath,String fileName){
           File copyFile=new File(copyPath);
           File pasteFile=new File(pastePath+"/"+fileName);
-          Log.d("debug1", copyFile + "");
-          Log.d("debug2",pasteFile+"");
           if (copyFile!=pasteFile) {
                FileInputStream inputStream = null;
                try {
@@ -78,19 +76,16 @@ public class Reference1 {
                } catch (IOException e) {
                     e.printStackTrace();
                }
-               Log.d("debug3","성공");
           }
      }
 
-
+     //================해당 경로에 폴더 없으면 폴더 생성================
      public static void FileMaker(String Path){
           File file=new File(Path);
           if (!file.exists()){
                file.mkdirs();
           }
      }
-
-
 
      //=============LwEditor Template 편집 전용 경로 캡쳐=================
 public static void ImageCapture(Context context,View container){

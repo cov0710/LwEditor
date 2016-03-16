@@ -12,23 +12,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/imageView2"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView2"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:textSize="40dp"
-            android:background="#FFE400"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp" />
+            android:id="@+id/imageView2" />
 
     </RelativeLayout>
 
@@ -40,8 +24,7 @@
         android:id="@+id/textView3"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="bold"
+        android:textSize="20dp"
         android:layout_weight="10"
         android:gravity="center" />
 </LinearLayout>

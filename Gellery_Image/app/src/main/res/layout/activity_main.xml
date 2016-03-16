@@ -24,7 +24,7 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_action_add"
-                android:background="@drawable/values"
+                android:background="#8041D9"
                 android:scaleType="center" />
 
             <TextView
@@ -66,7 +66,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:background="@drawable/values"
+                    android:background="#FF007F"
                     android:scaleType="center" />
 
                 <TextView
@@ -104,7 +104,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:background="@drawable/values"
+                    android:background="#0054FF"
                     android:scaleType="center" />
 
                 <TextView
@@ -142,7 +142,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:background="@drawable/values"
+                    android:background="#FF007F"
                     android:scaleType="center" />
 
                 <TextView
@@ -182,7 +182,7 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_action_add"
-                android:background="@drawable/values"
+                android:background="#B5B2FF"
                 android:scaleType="center" />
 
             <TextView
@@ -215,6 +215,7 @@
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:background="#ffffff" />
 
 </LinearLayout>

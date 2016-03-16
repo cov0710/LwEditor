@@ -7,7 +7,8 @@ import android.widget.GridView;
 public class SelectTemplate extends AppCompatActivity {
     GridView gridView;
     int[] imageIDs=new int[]{
-            R.drawable.temp1capture,R.drawable.temp2capture,R.drawable.temp3capture,R.drawable.temp4capture
+            R.drawable.template_1,R.drawable.template_2,R.drawable.template_3,R.drawable.template_4,R.drawable.template_5,R.drawable.template_6,
+            R.drawable.template_7,R.drawable.template_8,R.drawable.template_9,R.drawable.template_10
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {

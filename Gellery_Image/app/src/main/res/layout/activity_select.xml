@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView14"
+        android:background="#003399" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -24,9 +31,10 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Single"
                 android:id="@+id/selectText_1"
+                android:textSize="40dp"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="40dp" />
+                android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
 
         <RelativeLayout

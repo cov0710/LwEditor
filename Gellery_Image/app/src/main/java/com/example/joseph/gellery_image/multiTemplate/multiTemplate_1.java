@@ -1,31 +1,23 @@
 package com.example.joseph.gellery_image.multiTemplate;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.joseph.gellery_image.EditActivity_2;
 import com.example.joseph.gellery_image.EditActivity_3;
 import com.example.joseph.gellery_image.R;
+import com.example.joseph.gellery_image.reference.MultiTempMaker;
 import com.example.joseph.gellery_image.reference.Reference1;
 
 import java.util.ArrayList;
@@ -46,8 +38,10 @@ public class multiTemplate_1 extends AppCompatActivity implements View.OnClickLi
     int[] viewXML={R.id.mtemp1view_1,R.id.mtemp1view_2};
 
    String[][] imgArr=new String[imageViews.length][];
-    String[] vdoArr=null;
+    String[] vdoArr;
     ArrayList<String> list=new ArrayList<String>();
+
+    Button playButton;
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +52,7 @@ public class multiTemplate_1 extends AppCompatActivity implements View.OnClickLi
         }
         mtemp1vdo_1=(ImageView)findViewById(R.id.mtemp1vdo_1);
         mtemp1vdo_1.setOnClickListener(this);
-        container = (LinearLayout) findViewById(R.id.container);
+        container = (LinearLayout) findViewById(R.id.linearLayout);
         button = (Button) findViewById(R.id.save);
         mtemp1vdo =(RelativeLayout)findViewById(R.id.mtemp1vdo);
         for (int i=0;i<relativeLayouts.length;i++){
@@ -67,62 +61,23 @@ public class multiTemplate_1 extends AppCompatActivity implements View.OnClickLi
 
         button.setOnClickListener(this);
 
+            playButton=(Button)findViewById(R.id.play);
+           playButton.setOnClickListener(this);
+
+
     }
 
 
     @Override
     public void onActivityResult(int requestCode, int resultcode, Intent data) {
         if (resultcode == RESULT_OK) {
-            View view;
-            LayoutInflater layoutInflater;
-            layoutInflater=(LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view=layoutInflater.inflate(R.layout.videoframe, null);
-            ImageView imageView=(ImageView)view.findViewById(R.id.imageView4);
-            ImageView imageView1=(ImageView)view.findViewById(R.id.imageView6);
-            TextView textView=(TextView)view.findViewById(R.id.textView);
             String str1=data.getStringExtra("image");
             int str2=data.getIntExtra("count",1);
-            textView.setText(str2+"");
-            for (int i=0,j=0;i<imageViews.length&&j<imageViews.length;i++,j++){
-                if (requestCode==i){
-                    imageView1.setVisibility(View.GONE);
-                    Bitmap bmp=BitmapFactory.decodeFile(str1);
-                    BitmapFactory.Options options=new BitmapFactory.Options();
-                    options.inSampleSize=4;
-                    Bitmap resized=Bitmap.createScaledBitmap(bmp, 300, 300, true);
-                    imageView.setImageBitmap(resized);
-                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                    relativeLayouts[i].addView(view);
-                    int str3=data.getIntExtra("time",1);
-                    String[] img=data.getStringArrayExtra("images");
-                    imgArr[i]=img;
+            int str3=data.getIntExtra("time",1);
+            String[] img=data.getStringArrayExtra("images");
+            String[] vdo=data.getStringArrayExtra("videos");
+            MultiTempMaker.InfoGet(getApplicationContext(),str1,str2,str3,img,requestCode,imageViews,imgArr,relativeLayouts,mtemp1vdo,vdo,list,vdoArr);
 
-                    Toast.makeText(this,str3+"",Toast.LENGTH_SHORT).show();
-                }
-            }
-            if (requestCode==100){
-
-                Toast.makeText(this, str2+"", Toast.LENGTH_SHORT).show();
-                Bitmap bmp;
-                bmp= ThumbnailUtils.createVideoThumbnail(str1, MediaStore.Video.Thumbnails.MICRO_KIND);
-                BitmapFactory.Options options=new BitmapFactory.Options();
-                options.inSampleSize=4;
-                Bitmap resized=Bitmap.createScaledBitmap(bmp, 300, 300, true);
-                imageView.setImageBitmap(resized);
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                mtemp1vdo.addView(view);
-                String[] vdo=data.getStringArrayExtra("videos");
-                for (int i=0;i<vdo.length;i++){
-                    list.add(vdo[i]);
-                    vdoArr=new String[list.size()];
-                    vdoArr[i]=list.get(i);
-                    Log.d("zzzz",vdoArr[i]);
-                }
-
-
-            }
         }
     }
     @Override
@@ -142,6 +97,7 @@ public class multiTemplate_1 extends AppCompatActivity implements View.OnClickLi
 
 
         if (view.getId()==R.id.save){
+            Reference1.ImageCapture(multiTemplate_1.this, container);
             final AlertDialog.Builder alert = new AlertDialog.Builder(multiTemplate_1.this);
             alert.setTitle("알림");
             alert.setMessage("사진의 제목을 입력하세요.");
@@ -160,7 +116,6 @@ public class multiTemplate_1 extends AppCompatActivity implements View.OnClickLi
                         Reference1.FileMaker(abc + "/image_" + i);
                         String pp = abc + "/image_" + i;
                         for (int j = 0; j < imgArr[i].length; j++) {
-                            Log.d("ffff", imgArr[i][j]);
                             Reference1.copyFile(imgArr[i][j], pp, "mtemp1img_" + j);
 
                         }
@@ -171,7 +126,6 @@ public class multiTemplate_1 extends AppCompatActivity implements View.OnClickLi
                     for (int i = 0; i < vdoArr.length; i++) {
                         vdoArr = new String[list.size()];
                         vdoArr[i] = list.get(i);
-                        Log.d("zzzz", vdoArr[i]);
                         try {
                             Reference1.copyFile(vdoArr[i], qq, "mtemp1vdo_" + i);
                         }catch (Exception e){
@@ -197,5 +151,28 @@ public class multiTemplate_1 extends AppCompatActivity implements View.OnClickLi
                 alert.show();
 
             }
+        if (view.getId()==R.id.play){
+
+            for (int i=0;i<imgArr.length;i++){
+                for (int j=0;j<imgArr[i].length;j++){
+                    Log.d("ccc",imgArr[i][j]);
+                }
+            }
+            Intent intent1=new Intent();
+            intent1.setClass(this,com.example.joseph.gellery_image.multiTemplatePlay.multiTemplatePlay_1.class);
+            Log.d("qwe", "Qew");
+            intent1.putExtra("image_1", imgArr[0]);
+            Log.d("qwe", "Qew");
+            intent1.putExtra("image_2",imgArr[1]);
+            vdoArr=new String[list.size()];
+            for (int i=0;i<vdoArr.length;i++){
+                vdoArr[i]=list.get(i);
+                Log.d("rrrr",vdoArr[i]);
+            }
+            intent1.putExtra("video_1",vdoArr);
+//            Log.d("qwe",vdoArr[0]);
+
+            startActivity(intent1);
+        }
         }
 }

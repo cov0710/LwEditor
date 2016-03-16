@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +26,6 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
     int[] textXML={R.id.temp1Text_1,R.id.temp4Text_2,R.id.temp1Text_3,R.id.temp4Text_4,R.id.temp1Text_5,R.id.temp4Text_6};
     Button button;
     LinearLayout container;
-    String abPath = Environment.getExternalStorageDirectory().getPath();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +46,6 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
             public void onClick(View v) {
                 Reference1.ImageCapture(getApplicationContext(),container);
                 finish();
-
             }
         });
     }

@@ -36,15 +36,21 @@
                 FolderListActivityFragmented
             -->
         </activity>
-        <activity android:name=".PlayModeActivity" />
-        <activity android:name=".SinglePlay_template3" />
         <activity android:name=".MultiTemplate" />
         <activity android:name=".SingleMedia" />
-        <activity android:name=".OneMediaTemplate" />
         <activity android:name=".SingleMediaActivity" />
         <activity android:name=".multiTemplate.multiTemplate_1" />
         <activity android:name=".EditActivity_2" />
-        <activity android:name=".EditActivity_3"></activity>
+        <activity android:name=".EditActivity_3" />
+        <activity android:name=".SinglePreview" />
+        <activity android:name=".multiTemplatePlay.multiTemplatePlay_1" />
+        <activity android:name=".template.template_5" />
+        <activity android:name=".template.template_6" />
+        <activity android:name=".template.template_7" />
+        <activity android:name=".template.template_8" />
+        <activity android:name=".template.template_9" />
+        <activity android:name=".template.template_10" />
+        <activity android:name=".SelectMutiTemp"></activity>
     </application>
 
 </manifest>
