@@ -16,7 +16,7 @@
         <com.example.joseph.gellery_image.helper.VideoHelper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/videoView"
+            android:id="@+id/mtemp1vdo"
             android:layout_weight="0.8" />
 
         <LinearLayout

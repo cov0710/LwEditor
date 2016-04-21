@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Gellery_Image.iml" filepath="$PROJECT_DIR$/Gellery_Image.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/glide-3.6.1/glide-3.6.1.iml" filepath="$PROJECT_DIR$/glide-3.6.1/glide-3.6.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/mGallery/mGallery.iml" filepath="$PROJECT_DIR$/mGallery/mGallery.iml" />
     </modules>
   </component>

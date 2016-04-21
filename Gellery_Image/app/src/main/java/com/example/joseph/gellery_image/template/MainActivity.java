@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Reference1.ImageCapture(getApplicationContext(),container);
+                Reference1.ImageCaptureLwtemp(getApplicationContext(),container);
                 finish();
             }
         });

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
@@ -20,6 +19,7 @@ import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joseph.gellery_image.reference.Reference1;
 import com.example.joseph.gellery_image.template.MainActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -150,13 +150,14 @@ public class SingleMedia extends AppCompatActivity implements View.OnClickListen
                         }
                         for (int i=0;i<imgArr.length;i++){
                             ImageView qw=new ImageView(this);
-                            Bitmap bmp;
-                            bmp=PhotoHelper.getInstance().getThumb(this, imgArr[i]);
-                            BitmapFactory.Options options=new BitmapFactory.Options();
-                            options.inSampleSize=4;
-                            Bitmap resized=Bitmap.createScaledBitmap(bmp,300,300,true);
-                            qw.setImageBitmap(resized);
-                            qw.setScaleType(ImageView.ScaleType.FIT_XY);
+//                            Bitmap bmp;
+//                            bmp=PhotoHelper.getInstance().getThumb(this, imgArr[i]);
+//                            BitmapFactory.Options options=new BitmapFactory.Options();
+//                            options.inSampleSize=4;
+//                            Bitmap resized=Bitmap.createScaledBitmap(bmp,300,300,true);
+//                            qw.setImageBitmap(resized);
+//                            qw.setScaleType(ImageView.ScaleType.FIT_XY);
+                            Glide.with(getApplicationContext()).load(imgArr[i]).override(300,300).centerCrop().into(qw);
                             linearLayout.addView(qw);
                         }
                         list.clear();

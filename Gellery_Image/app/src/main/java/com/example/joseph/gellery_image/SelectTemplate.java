@@ -10,6 +10,9 @@ public class SelectTemplate extends AppCompatActivity {
             R.drawable.template_1,R.drawable.template_2,R.drawable.template_3,R.drawable.template_4,R.drawable.template_5,R.drawable.template_6,
             R.drawable.template_7,R.drawable.template_8,R.drawable.template_9,R.drawable.template_10
     };
+    String[] images={"drawable://"+R.drawable.template_1,"drawable://"+R.drawable.template_2,"drawable://"+R.drawable.template_3,"drawable://"+R.drawable.template_4
+    ,"drawable://"+R.drawable.template_5,"drawable://"+R.drawable.template_6,"drawable://"+R.drawable.template_7,"drawable://"+R.drawable.template_8
+    ,"drawable://"+R.drawable.template_9,"drawable://"+R.drawable.template_10};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

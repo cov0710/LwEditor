@@ -9,26 +9,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/container">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:id="@+id/mtemp1vdo">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/mtemp1vdo_1"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_play_circle_outline_black_48dp"
-                android:scaleType="center"
-                android:background="#0054FF" />
-
-        </RelativeLayout>
+        <com.example.joseph.gellery_image.helper.VideoHelper
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mtemp2vdo"
+            android:layout_weight="0.8" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -40,17 +28,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
-                android:id="@+id/mtemp1view_1">
+                android:id="@+id/mtemp2view_1">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/mtemp1img_1"
+                    android:id="@+id/mtemp2img_1"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:scaleType="center"
-                    android:background="#FF007F" />
+                    android:background="#8041D9"
+                    android:scaleType="center" />
 
             </RelativeLayout>
 
@@ -58,48 +46,80 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
-                android:id="@+id/mtemp1view_2">
+                android:id="@+id/mtemp2view_2">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/mtemp1img_2"
+                    android:id="@+id/mtemp2img_2"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:scaleType="center"
-                    android:background="#8041D9" />
+                    android:background="#B5B2FF"
+                    android:scaleType="center" />
 
             </RelativeLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:id="@+id/mtemp2view_3">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mtemp2img_3"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_action_add"
+                    android:background="#B5B2FF"
+                    android:scaleType="center" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:id="@+id/mtemp2view_4">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mtemp2img_4"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_action_add"
+                    android:background="#8041D9"
+                    android:scaleType="center" />
+
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="실행"
-            android:id="@+id/play"
+            android:id="@+id/exit"
             android:layout_weight="1"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:background="#ffffff" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="저장"
-            android:id="@+id/save"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal"
             android:background="#ffffff" />
 
     </LinearLayout>
+
 </LinearLayout>

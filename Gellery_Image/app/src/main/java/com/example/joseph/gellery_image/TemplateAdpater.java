@@ -2,14 +2,12 @@ package com.example.joseph.gellery_image;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.joseph.gellery_image.template.MainActivity;
 import com.example.joseph.gellery_image.template.template_1;
 import com.example.joseph.gellery_image.template.template_10;
@@ -55,23 +53,20 @@ public class TemplateAdpater extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ImageView imageView=null;
+        SingleMediaActivity.ViewHolder viewHolder;
         if (null!=convertView)
             imageView=(ImageView)convertView;
         else{
-            Bitmap bmp= BitmapFactory.decodeResource(context.getResources(),imageIDs[position]);
-            bmp=Bitmap.createScaledBitmap(bmp,240,240,false);
             imageView=new ImageView(context);
-            imageView.setAdjustViewBounds(true);
-            imageView.setImageBitmap(bmp);
+            Glide.with(context).load(imageIDs[position]).override(200,200).into(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("debug9",position+"");
                     if (position==0){
                         context.startActivity(new Intent(context,template_1.class));
                     }
                     if (position==1){
-                        context.startActivity(new Intent(context,template_2.class));
+                        context.startActivity(new Intent(context,template_2.class));//
                     }
                     if (position==2){
                         context.startActivity(new Intent(context,template_3.class));
@@ -93,14 +88,21 @@ public class TemplateAdpater extends BaseAdapter{
                     }
                     if (position==8){
                         context.startActivity(new Intent(context, template_9.class));
-                    }if (position==9){
+                    }
+                    if (position==9){
                         context.startActivity(new Intent(context, template_10.class));
                     }
                 }
             });
         }
+
+
         return imageView;
     }
+static class ViewHolder{
+    ImageView imageView;
+}
+
 
 
 }

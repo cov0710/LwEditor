@@ -44,7 +44,7 @@ public class template_5 extends AppCompatActivity implements View.OnClickListene
             @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                Reference1.ImageCapture(getApplicationContext(), container);
+                Reference1.ImageCaptureLwtemp(getApplicationContext(), container);
                 finish();
             }
         });

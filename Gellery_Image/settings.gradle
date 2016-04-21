@@ -1,1 +1,1 @@
-include ':app', ':mGallery'
+include ':app', ':mGallery', ':glide-3.6.1'

@@ -9,24 +9,24 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/container" >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:id="@+id/mtemp1vdo">
+            android:layout_weight="0.5"
+            android:id="@+id/mtemp4vdo">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/mtemp1vdo_1"
+                android:id="@+id/mtemp4vdo_1"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_play_circle_outline_black_48dp"
-                android:scaleType="center"
-                android:background="#0054FF" />
+                android:background="#8041D9"
+                android:scaleType="center" />
 
         </RelativeLayout>
 
@@ -34,23 +34,23 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
-                android:id="@+id/mtemp1view_1">
+                android:id="@+id/mtemp4view_1">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/mtemp1img_1"
+                    android:id="@+id/mtemp4img_1"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:scaleType="center"
-                    android:background="#FF007F" />
+                    android:background="#FF007F"
+                    android:scaleType="center" />
 
             </RelativeLayout>
 
@@ -58,27 +58,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
-                android:id="@+id/mtemp1view_2">
+                android:id="@+id/mtemp4view_2">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/mtemp1img_2"
+                    android:id="@+id/mtemp4img_2"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_add"
-                    android:scaleType="center"
-                    android:background="#8041D9" />
+                    android:background="#0054FF"
+                    android:scaleType="center" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:id="@+id/mtemp4view_3">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mtemp4img_3"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_action_add"
+                    android:background="#FF007F"
+                    android:scaleType="center" />
 
             </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <Button
             android:layout_width="match_parent"
@@ -100,6 +117,5 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:background="#ffffff" />
-
     </LinearLayout>
 </LinearLayout>

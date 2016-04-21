@@ -88,7 +88,7 @@ public class Reference1 {
      }
 
      //=============LwEditor Template 편집 전용 경로 캡쳐=================
-public static void ImageCapture(Context context,View container){
+public static void ImageCaptureLwtemp(Context context,View container){
      String path= Environment.getExternalStorageDirectory().getPath()+"/Lewi/Edit/LwTemp";
      container.buildDrawingCache();
      Bitmap captureView=container.getDrawingCache();
@@ -105,8 +105,21 @@ public static void ImageCapture(Context context,View container){
      context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://"+path + "/temp_" + mTime + ".png")));
      Toast.makeText(context,"저장 완료",Toast.LENGTH_SHORT).show();
 }
-
-
+     public static void thumbMaker(Context context,View container,String path){
+          container.buildDrawingCache();
+          Bitmap captureView=container.getDrawingCache();
+          FileOutputStream fos;
+          SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
+          Date currentTime=new Date();
+          String mTime=mSimpleDateFormat.format(currentTime);
+          try {
+               fos=new FileOutputStream(path+"/temp_"+mTime+".thumb");
+               captureView.compress(Bitmap.CompressFormat.PNG,100,fos);
+          }catch (FileNotFoundException e){
+               e.printStackTrace();
+          }
+          Toast.makeText(context,"저장 완료",Toast.LENGTH_SHORT).show();
+     }
 
 
 }

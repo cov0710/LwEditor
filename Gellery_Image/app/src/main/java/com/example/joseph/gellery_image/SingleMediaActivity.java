@@ -3,7 +3,6 @@ package com.example.joseph.gellery_image;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.urza.multipicker.PhotoHelper;
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -45,7 +44,6 @@ public class SingleMediaActivity extends AppCompatActivity implements View.OnCli
     Button button;
     String[] previewImages=null;
     ArrayList<String> pre=new ArrayList<String>();
-
     int countValue;
     private Animation mTranslateUp;
     private Animation mTranslateDown;
@@ -122,18 +120,16 @@ public class SingleMediaActivity extends AppCompatActivity implements View.OnCli
 
                     File countFile=new File(imageAllPath+"/"+imageList[0]);
                     String[] count=countFile.list();
-                    countValue= Integer.parseInt(count[0]);
+                    countValue= Integer.parseInt(count[0]);//
                     Log.d("efff",count[0]);
                     for (int q = 0; q < imageList.length; q++) {
                         Log.d("rrr", imageList[q]);
                     }
                     for (int i = 1; i < imageList.length; i++) {
                         ImageView imageView = new ImageView(SingleMediaActivity.this);
-                        Bitmap bmp;
-                        bmp = PhotoHelper.getInstance().getThumb(SingleMediaActivity.this, imageAllPath + "/" + imageList[i]);
-                        Bitmap resized = Bitmap.createScaledBitmap(bmp, 300, 300, true);
-                        imageView.setImageBitmap(resized);
                         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                        Glide.with(getApplicationContext()).load(imageAllPath+"/"+imageList[i]).override(270,270).centerCrop().into(imageView);
+
                         linearLayout.addView(imageView);
                         pre.add(imageAllPath + "/" + imageList[i]);
 
@@ -160,7 +156,6 @@ public class SingleMediaActivity extends AppCompatActivity implements View.OnCli
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode==RESULT_OK){
             if (requestCode==100){
-
             }
         }
     }
@@ -169,12 +164,6 @@ public class SingleMediaActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         if (v.getId()==R.id.button4){
         Intent intent=new Intent(this,SinglePreview.class);
-        Log.d("qwe", "qwe");
-//        for (int i = 0; i < previewImages.length; i++) {
-//            previewImages=new String[pre.size()];
-//            previewImages[i]=pre.get(i);
-//            Log.d("ferf", previewImages[i]);
-//        }
         intent.putExtra("images", previewImages);
             intent.putExtra("count",countValue);
             startActivity(intent);
@@ -217,37 +206,27 @@ public class SingleMediaActivity extends AppCompatActivity implements View.OnCli
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolder holder=null;
+
             if (convertView==null){
                 if (img[position]!="add") {
                     holder=new ViewHolder();
                     convertView = inflater.inflate(layout, null);
                     holder.view1=(ImageView)convertView.findViewById(R.id.imageView2);
                     holder.view2=(TextView)convertView.findViewById(R.id.textView3);
-//                    ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView2);
-//                    TextView textView1 = (TextView) convertView.findViewById(R.id.textView3);
                     holder.view2.setText(name[position] + " (" + count[position] + ")");
                     BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize = 4;
+                    options.inSampleSize = 4;//don't worry
+                    holder.view1.setScaleType(ImageView.ScaleType.FIT_XY);
+                    Glide.with(context).load(img[position]).override(200,200).centerCrop().into(holder.view1);
 
-                    Bitmap bmp = BitmapFactory.decodeFile(img[position], options);
-                    bmp = Bitmap.createScaledBitmap(bmp, 320, 240, false);
-                    holder.view1.setImageBitmap(bmp);
-                    holder.view1.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 }
                 else {
                     holder=new ViewHolder();
                     convertView=inflater.inflate(R.layout.low,null);
                     holder.view1=(ImageView)convertView.findViewById(R.id.imageView2);
                     holder.view2=(TextView)convertView.findViewById(R.id.textView3);
-//                    ImageView imageView1=(ImageView)convertView.findViewById(R.id.imageView2);
-//                    TextView textView1=(TextView)convertView.findViewById(R.id.textView3);
                     holder.view2.setVisibility(View.INVISIBLE);
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize = 4;
-                    Bitmap bmp=BitmapFactory.decodeResource(getResources(),R.drawable.ic_action_add);
-                    bmp=Bitmap.createScaledBitmap(bmp,320,240,false);
-                    holder.view1.setImageBitmap(bmp);
-                    holder.view1.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    Glide.with(context).load(R.drawable.ic_action_add).override(200, 200).into(holder.view1);
                 }
 
             }

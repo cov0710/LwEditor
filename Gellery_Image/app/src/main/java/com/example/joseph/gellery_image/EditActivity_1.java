@@ -1,7 +1,6 @@
 package com.example.joseph.gellery_image;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joseph.gellery_image.template.MainActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -19,7 +19,6 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.urza.multipicker.FolderListActivityFragmented;
 import com.urza.multipicker.MediaEntityWrapper;
 import com.urza.multipicker.MultiPicker;
-import com.urza.multipicker.PhotoHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -106,10 +105,11 @@ public class EditActivity_1 extends AppCompatActivity implements View.OnClickLis
                         pic.setFileSize(photo.getSize());
                         pic.setFilePath(photo.getMasterDataPath());
                         Log.d("debug123", pic.getFilePath());
-                        Bitmap bmp;
-                        bmp = PhotoHelper.getInstance().getThumb(this, pic.getFilePath());
-                        Log.d("FILE_PATH", bmp + "");
-                        imageView.setImageBitmap(bmp);
+//                        Bitmap bmp;
+//                        bmp = PhotoHelper.getInstance().getThumb(this, pic.getFilePath());
+//                        Log.d("FILE_PATH", bmp + "");
+//                        imageView.setImageBitmap(bmp);
+                        Glide.with(getApplicationContext()).load(pic.getFilePath()).override(300,300).centerCrop().into(imageView);
                         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                         pics.add(pic);
                         filePath = pic.getFilePath();

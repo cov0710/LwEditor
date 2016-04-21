@@ -44,7 +44,7 @@ public class template_1 extends AppCompatActivity implements View.OnClickListene
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Reference1.ImageCapture(getApplicationContext(),container);
+                Reference1.ImageCaptureLwtemp(getApplicationContext(),container);
                 finish();
             }
         });

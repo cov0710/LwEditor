@@ -3,10 +3,9 @@ package com.example.joseph.gellery_image;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +16,7 @@ import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joseph.gellery_image.template.MainActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -140,13 +140,15 @@ public class EditActivity_3 extends AppCompatActivity implements View.OnClickLis
                         }
                         for (int i=0;i<imgArr.length;i++){
                             ImageView qw=new ImageView(this);
-                            Bitmap bmp;
-                            bmp=PhotoHelper.getInstance().getThumb(this, imgArr[i]);
-                            BitmapFactory.Options options=new BitmapFactory.Options();
-                            options.inSampleSize=4;
-                            Bitmap resized=Bitmap.createScaledBitmap(bmp,300,300,true);
-                            qw.setImageBitmap(resized);
-                            qw.setScaleType(ImageView.ScaleType.FIT_XY);
+//                            Bitmap bmp;
+//                            bmp=PhotoHelper.getInstance().getThumb(this, imgArr[i]);
+//                            BitmapFactory.Options options=new BitmapFactory.Options();
+//                            options.inSampleSize=4;
+//                            Bitmap resized=Bitmap.createScaledBitmap(bmp,300,300,true);
+//                            qw.setImageBitmap(resized);
+//                            qw.setScaleType(ImageView.ScaleType.FIT_XY);
+                            Glide.with(getApplicationContext()).load(imgArr[i]).override(300,300).centerCrop().into(qw);
+                            Log.d("bbb","bbb");
                             linearLayout.addView(qw);
                             if (i==0){
                                 thumb=imgArr[0];
